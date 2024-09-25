@@ -18,3 +18,10 @@ Select the `Environments` tab on the left, choose an environment, and set your `
 
 Select your newly-added `environment` from the environment dropdown menu. On Mac, this is at top right, to the left of the eye icon.
 <img width="1261" alt="image" src="https://github.com/user-attachments/assets/b64e7383-7248-4af3-a762-051974d62343">
+
+# Postman safety practices
+The following practices are advised to secure your account's safety:
+
+- Don't use Collections obtained from an unknown source.
+- Review the environment JSON file before its usage.
+- Don't use any code that you don't understand.
