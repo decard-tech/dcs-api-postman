@@ -119,7 +119,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/kyc-status?externalUserId=00327989-c92d-4049-a849-287cf4efb5bb",
+							"raw": "{{host}}/account/v1/kyc-status?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4",
 							"host": [
 								"{{host}}"
 							],
@@ -131,7 +131,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "00327989-c92d-4049-a849-287cf4efb5bb"
+									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
 								}
 							]
 						}
@@ -187,7 +187,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/user-status?externalUserId=00327989-c92d-4049-a849-287cf4efb5bb",
+							"raw": "{{host}}/account/v1/user-status?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4",
 							"host": [
 								"{{host}}"
 							],
@@ -199,7 +199,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "00327989-c92d-4049-a849-287cf4efb5bb"
+									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
 								}
 							]
 						}
@@ -705,7 +705,31 @@
 								"type": "text"
 							}
 						],
-						"url": "{{host}}/crypto/v1/deposit-address"
+						"url": {
+							"raw": "{{host}}/crypto/v1/deposit-address?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4&network=TRON&coin=USDT",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"crypto",
+								"v1",
+								"deposit-address"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
+								},
+								{
+									"key": "network",
+									"value": "TRON"
+								},
+								{
+									"key": "coin",
+									"value": "USDT"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -932,7 +956,7 @@
 					"pm.globals.set(\"nonce\", nonce);",
 					"",
 					"// 假设 sk, apiKey 是环境变量",
-					"const sk = pm.environment.get(\"sk\");",
+					"const sk = pm.environment.get(\"apiSecret\");",
 					"const apiKey = pm.environment.get(\"apiKey\");",
 					"let rawBody = \"\"; // 修改为 let",
 					"",
@@ -941,12 +965,12 @@
 					"    if (!rawBody) {",
 					"        rawBody = null; // 如果没有查询参数，返回 null",
 					"    }",
-					"    console.log('当前请求是 GET ' +rawBody);",
+					"    // console.log('当前请求是 GET ' +rawBody);",
 					"",
 					"} else if (pm.request.method === 'POST') {",
 					"    if (pm.request.body && pm.request.body.raw) {",
 					"        rawBody = pm.request.body.raw; // 确保获取 raw body",
-					"        console.log('当前请求是 POST '+rawBody );",
+					"        // console.log('当前请求是 POST '+rawBody );",
 					"    }",
 					"}",
 					"",
@@ -970,7 +994,7 @@
 					"}",
 					"",
 					"// Usage",
-					"console.log(\"====nonce===\"+sk+\"--\"+apiKey + \"=\"+timestamp +\"=\"+nonce+\"=====\"+rawBody);",
+					"// console.log(\"====nonce===\"+sk+\"--\"+apiKey + \"=\"+timestamp +\"=\"+nonce+\"=====\"+rawBody);",
 					"",
 					"const signatureGenerator = new HmacSignatureGenerator(sk);",
 					"const signature = signatureGenerator.getSignature(apiKey + timestamp + nonce + rawBody);",
