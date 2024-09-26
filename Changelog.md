@@ -6,7 +6,7 @@ __Account__
 - POST /account/v1/register
 - GET  /account/v1/kyc-status
 - GET /account/v1/user-status
-- POST /redirect/v1/guidance-url
+- POST /redirect/v1/guidance-link
 
 
 __Wallet__
