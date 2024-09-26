@@ -263,7 +263,7 @@
 								}
 							}
 						},
-						"url": "{{host}}/redirect/v1/guidance-url"
+						"url": "{{host}}/redirect/v1/guidance-link"
 					},
 					"response": []
 				}
