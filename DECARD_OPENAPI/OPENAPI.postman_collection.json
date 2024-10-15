@@ -322,7 +322,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"mobileCode\":\"CN\", \n    \"mobile\": \"18721726990\",\n    \"behavioral\":\"REGISTER\"\n}",
+							"raw": "{\n    \"externalUserId\":\"4cbefe5d-76ed-4c80-b7e3-be6ce3281a1f\",\n    \"mobileCode\":\"CN\", \n    \"mobile\": \"18721726990\",\n    \"behavioral\":\"REGISTER\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
