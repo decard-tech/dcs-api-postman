@@ -1,5 +1,27 @@
 ## Change Logs
 
+# 20241118
+__Account__
+
+- POST /account/v1/bind-invite-relationship
+
+__card__
+
+- GET /card/v1/statements
+- GET /card/v1/statements/details
+
+__Asset__
+
+- POST /user-asset/v1/credit 
+- POST /user-asset/v1/debit
+- GET /user-asset/v1/transfer-query
+
+__Websocket__
+
+- GET /websocket/v1/get-channel
+ 
+  
+
 # 20240925
 
 __Account__
