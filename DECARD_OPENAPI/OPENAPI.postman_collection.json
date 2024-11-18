@@ -55,11 +55,17 @@
 								"key": "X-DAPI-NONCE",
 								"value": "{{nonce}}",
 								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"mobileCode\":\"CN\",\n    \"mobile\": \"01234567891\",\n    \"smsCode\":\"123456\"\n}",
+							"raw": "{\n    \"mobileCode\":\"CN\",\n    \"mobile\": \"18721726996\",\n    \"smsCode\":\"111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -119,7 +125,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/kyc-status?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4",
+							"raw": "{{host}}/account/v1/kyc-status?externalUserId=f38072a7-3c7d-4b75-84d6-2619cc26bdc2",
 							"host": [
 								"{{host}}"
 							],
@@ -131,7 +137,12 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
+									"value": "f38072a7-3c7d-4b75-84d6-2619cc26bdc2"
+								},
+								{
+									"key": "team",
+									"value": "bg",
+									"disabled": true
 								}
 							]
 						}
@@ -187,7 +198,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/user-status?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4",
+							"raw": "{{host}}/account/v1/user-status?externalUserId=579e4709-b9ea-4954-a505-7b7f4b41959c&team=bg",
 							"host": [
 								"{{host}}"
 							],
@@ -199,7 +210,11 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
+									"value": "579e4709-b9ea-4954-a505-7b7f4b41959c"
+								},
+								{
+									"key": "team",
+									"value": "bg"
 								}
 							]
 						}
@@ -252,11 +267,16 @@
 								"key": "X-DAPI-NONCE",
 								"value": "{{nonce}}",
 								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"action\":\"KYC_GUIDE\", \n    \"externalUserId\": \"00327989-c92d-4049-a849-287cf4efb5bb\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.baidu.com\"\n}",
+							"raw": "{\n    \"action\":\"CARD_INFO\", \n    \"externalUserId\": \"76b1e528-4c27-44d1-8167-6ee5364e252a\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -264,6 +284,72 @@
 							}
 						},
 						"url": "{{host}}/redirect/v1/guidance-link"
+					},
+					"response": []
+				},
+				{
+					"name": "bind-invite-relationship",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\": \"b10e8a64-f00b-4df3-9526-d885a4d4f4fa\",\n    \"externalInviterUserId\":\"6a3417ab-0a05-4188-94a9-bc292016a6e0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/account/v1/bind-invite-relationship"
 					},
 					"response": []
 				}
@@ -322,7 +408,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"4cbefe5d-76ed-4c80-b7e3-be6ce3281a1f\",\n    \"mobileCode\":\"CN\", \n    \"mobile\": \"18721726990\",\n    \"behavioral\":\"REGISTER\"\n}",
+							"raw": "{\n    \"mobileCode\":\"CN\", \n    \"mobile\": \"18917360296\",\n    \"behavioral\":\"REGISTER\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -384,6 +470,11 @@
 								"key": "X-DAPI-NONCE",
 								"value": "{{nonce}}",
 								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text"
 							}
 						],
 						"url": "{{host}}/card/v1/list"
@@ -439,7 +530,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/card/v1/detail?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4&cardMantissa=0379",
+							"raw": "{{host}}/card/v1/detail?externalUserId=fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3&cardMantissa=2266&X-TEAM=bg",
 							"host": [
 								"{{host}}"
 							],
@@ -451,11 +542,15 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
+									"value": "fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3"
 								},
 								{
 									"key": "cardMantissa",
-									"value": "0379"
+									"value": "2266"
+								},
+								{
+									"key": "X-TEAM",
+									"value": "bg"
 								}
 							]
 						}
@@ -508,11 +603,16 @@
 								"key": "X-DAPI-NONCE",
 								"value": "{{nonce}}",
 								"type": "text"
+							},
+							{
+								"key": "X-team",
+								"value": "bg",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"984a5356-7a60-4df4-8dcb-df426a6442f4\",\n    \"block\":true,\n    \"cardMantissa\":\"0379\",\n    \"smsCode\":\"123456\"\n}",
+							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"block\":false,\n    \"cardMantissa\":\"2266\",\n    \"smsCode\":\"111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -573,7 +673,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"984a5356-7a60-4df4-8dcb-df426a6442f4\",\n    \"cardMantissa\":\"0379\",\n    \"page\":\"1\",\n    \"size\":\"10\",\n    \"type\":\"SPEND\",\n    \"startTime\":1725167338000,\n    \"endTime\":1727164167145\n}",
+							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"cardMantissa\":\"2266\",\n    \"page\":\"2\",\n    \"size\":\"10\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -581,6 +681,163 @@
 							}
 						},
 						"url": "{{host}}/card/v1/transactions"
+					},
+					"response": []
+				},
+				{
+					"name": "card-statements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/card/v1/statements?externalUserId=76b1e528-4c27-44d1-8167-6ee5364e252a&page=1&rows=100",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"statements"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "76b1e528-4c27-44d1-8167-6ee5364e252a"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "card-statements-detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/card/v1/statements/detail?externalUserId=76b1e528-4c27-44d1-8167-6ee5364e252a&page=1&rows=100&statementId=NO_POSTED",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"statements",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "76b1e528-4c27-44d1-8167-6ee5364e252a"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "100"
+								},
+								{
+									"key": "statementId",
+									"value": "NO_POSTED"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -706,7 +963,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/crypto/v1/deposit-address?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4&network=TRON&coin=USDT",
+							"raw": "{{host}}/crypto/v1/deposit-address?network=TRON&coin=USDC&externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
 							"host": [
 								"{{host}}"
 							],
@@ -717,16 +974,16 @@
 							],
 							"query": [
 								{
-									"key": "externalUserId",
-									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
-								},
-								{
 									"key": "network",
 									"value": "TRON"
 								},
 								{
 									"key": "coin",
-									"value": "USDT"
+									"value": "USDC"
+								},
+								{
+									"key": "externalUserId",
+									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
 								}
 							]
 						}
@@ -787,7 +1044,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/user-asset/v1/balance?externalUserId=984a5356-7a60-4df4-8dcb-df426a6442f4",
+							"raw": "{{host}}/user-asset/v1/balance?externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
 							"host": [
 								"{{host}}"
 							],
@@ -799,7 +1056,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "984a5356-7a60-4df4-8dcb-df426a6442f4"
+									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
 								}
 							]
 						}
@@ -852,11 +1109,16 @@
 								"key": "X-DAPI-NONCE",
 								"value": "{{nonce}}",
 								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"984a5356-7a60-4df4-8dcb-df426a6442f4\",\n    \"page\":\"1\",\n    \"size\":\"10\",\n    \"type\":\"DEPOSIT\",\n    \"startTime\":1725167338000,\n    \"endTime\":1727164167145\n}",
+							"raw": "{\n    \"externalUserId\":\"46438c1a-3bec-464d-93ca-c69699b54e8e\",\n    \"page\":\"1\",\n    \"size\":\"100\"\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -917,7 +1179,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"984a5356-7a60-4df4-8dcb-df426a6442f4\",\n    \"tranId\":\"4163363226056537088\",\n    \"externalTranId\":\"4163363225804878849\",\n    \"type\":\"DEPOSIT\"\n}",
+							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"tranId\":\"4232726480557484545\",\n    \"externalTranId\":\"4232726477101378048\",\n    \"type\":\"CONVERSION\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -925,6 +1187,278 @@
 							}
 						},
 						"url": "{{host}}/user-asset/v1/transaction-detail"
+					},
+					"response": []
+				},
+				{
+					"name": "asset-credit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let randomNumber = Math.floor(Math.random() * 1000000000000); // 生成 0 到 999999999999 之间的随机数",
+									"pm.globals.set(\"tranid\",randomNumber)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"8d6e4652-33a6-4ee8-a559-165b7e8c0813\",\n    \"asset\":\"USDT\",\n    \"amount\":\"11.111\",\n    \"externalTranId\":\"123213213212\", \n    \"remark\":\"1\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user-asset/v1/credit"
+					},
+					"response": []
+				},
+				{
+					"name": "asset-debit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let randomNumber = Math.floor(Math.random() * 1000000000000); // 生成 0 到 999999999999 之间的随机数",
+									"pm.globals.set(\"tranid\",randomNumber)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"8d6e4652-33a6-4ee8-a559-165b7e8c0813\",\n    \"asset\":\"USDT\",\n    \"amount\":\"11.111\",\n    \"externalTranId\":\"1232132132121\", \n    \"remark\":\"1\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user-asset/v1/debit"
+					},
+					"response": []
+				},
+				{
+					"name": "/user-asset/v1/transfer-query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user-asset/v1/transfer-query?externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user-asset",
+								"v1",
+								"transfer-query"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "websocket",
+			"item": [
+				{
+					"name": "get-channel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// 解析响应体为 JSON",
+									"let responseBody = pm.response.json();",
+									"",
+									"// 提取 data 字段",
+									"let data = responseBody.data;",
+									"",
+									"// 将 data 保存到环境变量中",
+									"pm.environment.set(\"channel\", data);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/websocket/v1/get-channel?channel=TEST",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"websocket",
+								"v1",
+								"get-channel"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "TEST"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -999,6 +1533,8 @@
 					"const signatureGenerator = new HmacSignatureGenerator(sk);",
 					"const signature = signatureGenerator.getSignature(apiKey + timestamp + nonce + rawBody);",
 					"pm.globals.set('SIGNATURE', signature);",
+					"// pm.request.headers.add({key: 'x-gray-env', value: 'openapi'});",
+					"",
 					"// console.log(signature);",
 					""
 				]
