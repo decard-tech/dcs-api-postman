@@ -1315,7 +1315,7 @@
 					"response": []
 				},
 				{
-					"name": "/user-asset/v1/transfer-query",
+					"name": "transfer-query",
 					"event": [
 						{
 							"listen": "test",
