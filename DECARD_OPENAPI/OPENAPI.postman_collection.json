@@ -1497,7 +1497,7 @@
 					"if (pm.request.method === 'GET') {",
 					"    rawBody = pm.request.url.query.toString(); // 获取查询参数字符串",
 					"    if (!rawBody) {",
-					"        rawBody = null; // 如果没有查询参数，返回 null",
+					"        //rawBody = null; // 如果没有查询参数，返回 null",
 					"    }",
 					"    // console.log('当前请求是 GET ' +rawBody);",
 					"",
