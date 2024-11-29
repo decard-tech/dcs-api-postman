@@ -57,15 +57,14 @@
 								"type": "text"
 							},
 							{
-								"key": "X-TEAM",
-								"value": "bg",
-								"type": "text",
-								"disabled": true
+								"key": "x-gray-env",
+								"value": "openapi",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"mobileCode\":\"CN\",\n    \"mobile\": \"18721726996\",\n    \"smsCode\":\"111111\"\n}",
+							"raw": "{\n    \"mobileCode\":\"CN\",\n    \"mobile\": \"13917925782\",\n    \"smsCode\":\"111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -198,7 +197,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/user-status?externalUserId=579e4709-b9ea-4954-a505-7b7f4b41959c&team=bg",
+							"raw": "{{host}}/account/v1/user-status?externalUserId=fb9ed047-e097-4892-a391-4acfeba3884f",
 							"host": [
 								"{{host}}"
 							],
@@ -210,11 +209,12 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "579e4709-b9ea-4954-a505-7b7f4b41959c"
+									"value": "fb9ed047-e097-4892-a391-4acfeba3884f"
 								},
 								{
 									"key": "team",
-									"value": "bg"
+									"value": "bg",
+									"disabled": true
 								}
 							]
 						}
@@ -271,12 +271,13 @@
 							{
 								"key": "X-TEAM",
 								"value": "bg",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"action\":\"CARD_INFO\", \n    \"externalUserId\": \"76b1e528-4c27-44d1-8167-6ee5364e252a\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\"\n}",
+							"raw": "{\n    \"action\":\"CARD_INFO\", \n    \"externalUserId\": \"46438c1a-3bec-464d-93ca-c69699b54e8e\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\",\n    \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -408,7 +409,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"mobileCode\":\"CN\", \n    \"mobile\": \"18917360296\",\n    \"behavioral\":\"REGISTER\"\n}",
+							"raw": "{\n    \"mobileCode\":\"SG\", \n    \"mobile\": \"18917360296\",\n    \"behavioral\":\"REGISTER\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -470,11 +471,6 @@
 								"key": "X-DAPI-NONCE",
 								"value": "{{nonce}}",
 								"type": "text"
-							},
-							{
-								"key": "X-TEAM",
-								"value": "bg",
-								"type": "text"
 							}
 						],
 						"url": "{{host}}/card/v1/list"
@@ -530,7 +526,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/card/v1/detail?externalUserId=fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3&cardMantissa=2266&X-TEAM=bg",
+							"raw": "{{host}}/card/v1/detail?externalUserId=902ed998-3b0d-46ad-9f78-f52b3a6f4046&cardMantissa=2266",
 							"host": [
 								"{{host}}"
 							],
@@ -542,15 +538,11 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3"
+									"value": "902ed998-3b0d-46ad-9f78-f52b3a6f4046"
 								},
 								{
 									"key": "cardMantissa",
 									"value": "2266"
-								},
-								{
-									"key": "X-TEAM",
-									"value": "bg"
 								}
 							]
 						}
@@ -612,7 +604,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"block\":false,\n    \"cardMantissa\":\"2266\",\n    \"smsCode\":\"111111\"\n}",
+							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"block\":true,\n    \"cardMantissa\":\"0583\",\n    \"smsCode\":\"111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1241,7 +1233,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"8d6e4652-33a6-4ee8-a559-165b7e8c0813\",\n    \"asset\":\"USDT\",\n    \"amount\":\"11.111\",\n    \"externalTranId\":\"123213213212\", \n    \"remark\":\"1\"   \n}",
+							"raw": "{\n    \"externalUserId\":\"3c078220-2c29-4ce6-9e54-9e184fc48e77\",\n    \"asset\":\"USDT\",\n    \"amount\":\"0.1\",\n    \"externalTranId\":\"123213213217721\", \n    \"remark\":\"1\"   \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1303,7 +1295,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"8d6e4652-33a6-4ee8-a559-165b7e8c0813\",\n    \"asset\":\"USDT\",\n    \"amount\":\"11.111\",\n    \"externalTranId\":\"1232132132121\", \n    \"remark\":\"1\"   \n}",
+							"raw": "{\n    \"externalUserId\":\"dbeb334e-a7d5-4b54-8974-ae15d6609817\",\n    \"asset\":\"USDT\",\n    \"amount\":\"2.559900\",\n    \"externalTranId\":\"098787832432431\", \n    \"remark\":\"1\"   \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1363,7 +1355,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/user-asset/v1/transfer-query?externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
+							"raw": "{{host}}/user-asset/v1/transfer-query?externalTranIds=1242062347703996416",
 							"host": [
 								"{{host}}"
 							],
@@ -1374,8 +1366,8 @@
 							],
 							"query": [
 								{
-									"key": "externalUserId",
-									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
+									"key": "externalTranIds",
+									"value": "1242062347703996416"
 								}
 							]
 						}
@@ -1497,7 +1489,7 @@
 					"if (pm.request.method === 'GET') {",
 					"    rawBody = pm.request.url.query.toString(); // 获取查询参数字符串",
 					"    if (!rawBody) {",
-					"        //rawBody = null; // 如果没有查询参数，返回 null",
+					"        // rawBody = null; // 如果没有查询参数，返回 null",
 					"    }",
 					"    // console.log('当前请求是 GET ' +rawBody);",
 					"",
@@ -1533,7 +1525,7 @@
 					"const signatureGenerator = new HmacSignatureGenerator(sk);",
 					"const signature = signatureGenerator.getSignature(apiKey + timestamp + nonce + rawBody);",
 					"pm.globals.set('SIGNATURE', signature);",
-					"// pm.request.headers.add({key: 'x-gray-env', value: 'openapi'});",
+					"// pm.request.headers.add({key: 'x-gray-env', value: 'multi-card'});",
 					"",
 					"// console.log(signature);",
 					""
