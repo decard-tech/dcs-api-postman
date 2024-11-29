@@ -1,0 +1,1546 @@
+{
+	"info": {
+		"_postman_id": "82f0c01d-7401-4291-ab98-4aa38a0160de",
+		"name": "OPENAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "5209098"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "x-gray-env",
+								"value": "openapi",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileCode\":\"CN\",\n    \"mobile\": \"13917925782\",\n    \"smsCode\":\"111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/account/v1/register"
+					},
+					"response": []
+				},
+				{
+					"name": "kyc-status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/account/v1/kyc-status?externalUserId=f38072a7-3c7d-4b75-84d6-2619cc26bdc2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"account",
+								"v1",
+								"kyc-status"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "f38072a7-3c7d-4b75-84d6-2619cc26bdc2"
+								},
+								{
+									"key": "team",
+									"value": "bg",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/account/v1/user-status?externalUserId=fb9ed047-e097-4892-a391-4acfeba3884f",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"account",
+								"v1",
+								"user-status"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "fb9ed047-e097-4892-a391-4acfeba3884f"
+								},
+								{
+									"key": "team",
+									"value": "bg",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "guidance-url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"action\":\"CARD_INFO\", \n    \"externalUserId\": \"46438c1a-3bec-464d-93ca-c69699b54e8e\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\",\n    \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/redirect/v1/guidance-link"
+					},
+					"response": []
+				},
+				{
+					"name": "bind-invite-relationship",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\": \"b10e8a64-f00b-4df3-9526-d885a4d4f4fa\",\n    \"externalInviterUserId\":\"6a3417ab-0a05-4188-94a9-bc292016a6e0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/account/v1/bind-invite-relationship"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "captcha",
+			"item": [
+				{
+					"name": "send-mobile-code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileCode\":\"SG\", \n    \"mobile\": \"18917360296\",\n    \"behavioral\":\"REGISTER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/captcha/v1/send-mobile-code"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "card",
+			"item": [
+				{
+					"name": "card-list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": "{{host}}/card/v1/list"
+					},
+					"response": []
+				},
+				{
+					"name": "card-detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/card/v1/detail?externalUserId=902ed998-3b0d-46ad-9f78-f52b3a6f4046&cardMantissa=2266",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "902ed998-3b0d-46ad-9f78-f52b3a6f4046"
+								},
+								{
+									"key": "cardMantissa",
+									"value": "2266"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "card-block",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "X-team",
+								"value": "bg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"block\":true,\n    \"cardMantissa\":\"0583\",\n    \"smsCode\":\"111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/card/v1/block"
+					},
+					"response": []
+				},
+				{
+					"name": "card-transactions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"cardMantissa\":\"2266\",\n    \"page\":\"2\",\n    \"size\":\"10\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/card/v1/transactions"
+					},
+					"response": []
+				},
+				{
+					"name": "card-statements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/card/v1/statements?externalUserId=76b1e528-4c27-44d1-8167-6ee5364e252a&page=1&rows=100",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"statements"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "76b1e528-4c27-44d1-8167-6ee5364e252a"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "card-statements-detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/card/v1/statements/detail?externalUserId=76b1e528-4c27-44d1-8167-6ee5364e252a&page=1&rows=100&statementId=NO_POSTED",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"statements",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "76b1e528-4c27-44d1-8167-6ee5364e252a"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "100"
+								},
+								{
+									"key": "statementId",
+									"value": "NO_POSTED"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wallet",
+			"item": [
+				{
+					"name": "coin-list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/crypto/v1/network-coin?type=DEPOSIT",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"crypto",
+								"v1",
+								"network-coin"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "DEPOSIT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deposit-address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/crypto/v1/deposit-address?network=TRON&coin=USDC&externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"crypto",
+								"v1",
+								"deposit-address"
+							],
+							"query": [
+								{
+									"key": "network",
+									"value": "TRON"
+								},
+								{
+									"key": "coin",
+									"value": "USDC"
+								},
+								{
+									"key": "externalUserId",
+									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Asset",
+			"item": [
+				{
+					"name": "user-balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user-asset/v1/balance?externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user-asset",
+								"v1",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transactions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "X-TEAM",
+								"value": "bg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"46438c1a-3bec-464d-93ca-c69699b54e8e\",\n    \"page\":\"1\",\n    \"size\":\"100\"\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user-asset/v1/transactions"
+					},
+					"response": []
+				},
+				{
+					"name": "transaction-detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"tranId\":\"4232726480557484545\",\n    \"externalTranId\":\"4232726477101378048\",\n    \"type\":\"CONVERSION\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user-asset/v1/transaction-detail"
+					},
+					"response": []
+				},
+				{
+					"name": "asset-credit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let randomNumber = Math.floor(Math.random() * 1000000000000); // 生成 0 到 999999999999 之间的随机数",
+									"pm.globals.set(\"tranid\",randomNumber)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"3c078220-2c29-4ce6-9e54-9e184fc48e77\",\n    \"asset\":\"USDT\",\n    \"amount\":\"0.1\",\n    \"externalTranId\":\"123213213217721\", \n    \"remark\":\"1\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user-asset/v1/credit"
+					},
+					"response": []
+				},
+				{
+					"name": "asset-debit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let randomNumber = Math.floor(Math.random() * 1000000000000); // 生成 0 到 999999999999 之间的随机数",
+									"pm.globals.set(\"tranid\",randomNumber)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\":\"dbeb334e-a7d5-4b54-8974-ae15d6609817\",\n    \"asset\":\"USDT\",\n    \"amount\":\"2.559900\",\n    \"externalTranId\":\"098787832432431\", \n    \"remark\":\"1\"   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user-asset/v1/debit"
+					},
+					"response": []
+				},
+				{
+					"name": "transfer-query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user-asset/v1/transfer-query?externalTranIds=1242062347703996416",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user-asset",
+								"v1",
+								"transfer-query"
+							],
+							"query": [
+								{
+									"key": "externalTranIds",
+									"value": "1242062347703996416"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "websocket",
+			"item": [
+				{
+					"name": "get-channel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// 解析响应体为 JSON",
+									"let responseBody = pm.response.json();",
+									"",
+									"// 提取 data 字段",
+									"let data = responseBody.data;",
+									"",
+									"// 将 data 保存到环境变量中",
+									"pm.environment.set(\"channel\", data);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/websocket/v1/get-channel?channel=TEST",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"websocket",
+								"v1",
+								"get-channel"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "TEST"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// 生成11位手机号",
+					"pm.globals.set(\"mobile\", \"1\" + Math.floor(1000000000 + Math.random() * 900000000));",
+					"",
+					"// // 生成随机邮箱",
+					"// const randomEmail = Math.random().toString(36).substring(2, 15) + \"@example.com\";",
+					"// pm.globals.set(\"email\", randomEmail);",
+					"",
+					"const CryptoJS = require('crypto-js');",
+					"",
+					"const timestamp = Date.now();",
+					"// console.log(\"======\"+timestamp);",
+					"pm.globals.set(\"timestamp\", timestamp);",
+					"",
+					"// 生成范围在 [10000, 99999] 的随机 nonce",
+					"const nonce = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;",
+					"pm.globals.set(\"nonce\", nonce);",
+					"",
+					"// 假设 sk, apiKey 是环境变量",
+					"const sk = pm.environment.get(\"apiSecret\");",
+					"const apiKey = pm.environment.get(\"apiKey\");",
+					"let rawBody = \"\"; // 修改为 let",
+					"",
+					"if (pm.request.method === 'GET') {",
+					"    rawBody = pm.request.url.query.toString(); // 获取查询参数字符串",
+					"    if (!rawBody) {",
+					"        // rawBody = null; // 如果没有查询参数，返回 null",
+					"    }",
+					"    // console.log('当前请求是 GET ' +rawBody);",
+					"",
+					"} else if (pm.request.method === 'POST') {",
+					"    if (pm.request.body && pm.request.body.raw) {",
+					"        rawBody = pm.request.body.raw; // 确保获取 raw body",
+					"        // console.log('当前请求是 POST '+rawBody );",
+					"    }",
+					"}",
+					"",
+					"// 生成签名",
+					"class HmacSignatureGenerator {",
+					"    constructor(apiSecret) {",
+					"        if (!apiSecret || apiSecret.trim() === '') {",
+					"            throw new Error('SECRET_KEY_EMPTY');",
+					"        }",
+					"        this.apiSecret = apiSecret;",
+					"    }",
+					"",
+					"    getSignature(data) {",
+					"        try {",
+					"            const hmac = CryptoJS.HmacSHA256(data, this.apiSecret);",
+					"            return hmac.toString(CryptoJS.enc.Hex);",
+					"        } catch (error) {",
+					"            throw new Error('Failed to calculate hmac-sha256');",
+					"        }",
+					"    }",
+					"}",
+					"",
+					"// Usage",
+					"// console.log(\"====nonce===\"+sk+\"--\"+apiKey + \"=\"+timestamp +\"=\"+nonce+\"=====\"+rawBody);",
+					"",
+					"const signatureGenerator = new HmacSignatureGenerator(sk);",
+					"const signature = signatureGenerator.getSignature(apiKey + timestamp + nonce + rawBody);",
+					"pm.globals.set('SIGNATURE', signature);",
+					"// pm.request.headers.add({key: 'x-gray-env', value: 'multi-card'});",
+					"",
+					"// console.log(signature);",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
