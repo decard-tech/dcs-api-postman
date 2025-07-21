@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f60a29bb-aaf5-4168-8e80-d630c28f2e1b",
+		"_postman_id": "10ab5b72-8aa8-4985-9611-799f24d0a1f8",
 		"name": "OPENAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "120067"
+		"_exporter_id": "5209098"
 	},
 	"item": [
 		{
@@ -134,7 +134,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/kyc-status?externalUserId=f38072a7-3c7d-4b75-84d6-2619cc26bdc2",
+							"raw": "{{host}}/account/v1/kyc-status?externalUserId=a38d2305-0c7e-46f9-b14a-93e6598230b5",
 							"host": [
 								"{{host}}"
 							],
@@ -146,7 +146,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "f38072a7-3c7d-4b75-84d6-2619cc26bdc2"
+									"value": "a38d2305-0c7e-46f9-b14a-93e6598230b5"
 								},
 								{
 									"key": "team",
@@ -287,7 +287,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"action\":\"CARD_INFO\", \n    \"externalUserId\": \"46438c1a-3bec-464d-93ca-c69699b54e8e\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\",\n    \"cardMantissa\":\"1111\",\n    \"language\":\"en\",\n    \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"\n}",
+							"raw": "{\n    \"action\":\"KYC_GUIDE\", \n    \"externalUserId\": \"a38d2305-0c7e-46f9-b14a-93e6598230b5\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\",\n    \"cardMantissa\":\"1111\",\n    \"language\":\"en\",\n    \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -379,6 +379,145 @@
 								"account",
 								"v1",
 								"bind-invite-relationship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-travel-rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/account/v1/query-travel-rule?externalUserId=a38d2305-0c7e-46f9-b14a-93e6598230b5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"account",
+								"v1",
+								"query-travel-rule"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "a38d2305-0c7e-46f9-b14a-93e6598230b5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-travel-rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"externalUserId\": \"a38d2305-0c7e-46f9-b14a-93e6598230b5\",\n  \"channelName\": \"MOBILE_APP\",\n  \"institutionName\": \"Example Bank Ltd\",\n  \"name\": \"ZHANG SAN\",\n  \"id\": {\n    \"type\": \"PASSPORT\",\n    \"value\": \"E12345678\",\n    \"countryOfIssue\": \"CN\"\n  },\n  \"address\": {\n    \"city\": \"SHANGHAI\",\n    \"country\": \"ZHONGGUO\",\n    \"dependentLocality\": \"PUDONG XIN QU\",\n    \"postalCode\": \"200120\",\n    \"region\": \"SHANGHAI SHI\",\n    \"addressLines\": \"LUJIAZUI JINRONG ZHONGXIN 88 HAO 1201 SHI\"\n  },\n  \"dateOfBirth\": \"1990-01-01\",\n  \"placeOfBirth\": \"BEIJING\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/account/v1/update-travel-rule",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"account",
+								"v1",
+								"update-travel-rule"
 							]
 						}
 					},
@@ -902,6 +1041,83 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "fiat-transcations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/card/v1/fiat/transactions?externalUserId=a38d2305-0c7e-46f9-b14a-93e6598230b5&page=1&rows=50",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"fiat",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "a38d2305-0c7e-46f9-b14a-93e6598230b5"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -909,7 +1125,7 @@
 			"name": "wallet",
 			"item": [
 				{
-					"name": "coin-list",
+					"name": "coin-list-FBS",
 					"event": [
 						{
 							"listen": "test",
@@ -977,7 +1193,83 @@
 					"response": []
 				},
 				{
-					"name": "deposit-address",
+					"name": "deposit-address-FBS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/crypto/v1/deposit-address?network=TRON&coin=USDC&externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"crypto",
+								"v1",
+								"deposit-address"
+							],
+							"query": [
+								{
+									"key": "network",
+									"value": "TRON"
+								},
+								{
+									"key": "coin",
+									"value": "USDC"
+								},
+								{
+									"key": "externalUserId",
+									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deposit-address-fomo",
 					"event": [
 						{
 							"listen": "test",
@@ -1561,6 +1853,81 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get-channel Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// 解析响应体为 JSON",
+									"let responseBody = pm.response.json();",
+									"",
+									"// 提取 data 字段",
+									"let data = responseBody.data;",
+									"",
+									"// 将 data 保存到环境变量中",
+									"pm.environment.set(\"channel\", data);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/websocket/v1/search?version=5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"websocket",
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -1572,8 +1939,6 @@
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
-					"// 生成11位手机号",
-					"pm.globals.set(\"mobile\", \"1\" + Math.floor(1000000000 + Math.random() * 900000000));",
 					"//生成随机数",
 					"let randomNumber = Math.floor(Math.random() * 1000000000000); // 生成 0 到 999999999999 之间的随机数",
 					"pm.globals.set(\"tranid\",randomNumber)",
@@ -1599,7 +1964,7 @@
 					"}",
 					"// 示例",
 					"// const secret = \"sjC951Crc3WxH3YXqnJ43v/miI8iCan2iQbK7Km0w1s=\";",
-					"const data = \"13866668888\";",
+					"const data = '1' + Math.floor(1000000000 + Math.random() * 9000000000);",
 					"const encryptedData = encryptAES(data,sk);",
 					"console.log(\"ENCRYPT:\", encryptedData);",
 					"// 将加密结果存入 Postman 的变量",
