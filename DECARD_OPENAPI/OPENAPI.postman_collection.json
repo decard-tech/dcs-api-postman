@@ -1855,7 +1855,7 @@
 					"response": []
 				},
 				{
-					"name": "get-channel Copy",
+					"name": "search socket",
 					"event": [
 						{
 							"listen": "test",
