@@ -1,5 +1,17 @@
 ## Change Logs
 
+# 20250621
+__Account__
+
+- GET /account/v1/query-travel-rule
+- POST /account/v1/update-travel-rule
+
+
+__Wallet__
+
+- GET /crypto/v2/deposit-address (Fomo Deposite)
+
+
 # 20241118
 __Account__
 
