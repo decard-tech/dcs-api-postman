@@ -25,7 +25,8 @@ __intent ticket__
 - POST /open-api/intent-ticket/v1/create
 
 __enterprise__
-- GET /open-api/intent-ticket/v1/detail
+- GET /open-api/enterprise/v1/enterprise-balance
+- GET /open-api/enterprise/v1/settlement-file-url
 
 
 
