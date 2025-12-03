@@ -315,6 +315,57 @@
 					"response": []
 				},
 				{
+					"name": "kyc-status-v2(查询文件处理进度)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://api.uatdcd.com/account/v2/kyc-status?externalUserId=1bc790ec-c38a-4d41-8ecb-bb0f3bbf615c",
+							"protocol": "https",
+							"host": [
+								"api",
+								"uatdcd",
+								"com"
+							],
+							"path": [
+								"account",
+								"v2",
+								"kyc-status"
+							],
+							"query": [
+								{
+									"key": "externalUserId",
+									"value": "1bc790ec-c38a-4d41-8ecb-bb0f3bbf615c"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'https://api.uatdcd.com/account/v2/kyc-status?externalUserId=1bc790ec-c38a-4d41-8ecb-bb0f3bbf615c' \\\n--header 'X-DAPI-API-KEY: {{apiKey}}' \\\n--header 'X-DAPI-SIGN: 63f15022dfd207f45013e030dadba8871844849a1917fa41b794ac2122d38267' \\\n--header 'X-DAPI-TIMESTAMP: 1764663679515' \\\n--header 'X-DAPI-NONCE: 55789' \\\n--header 'Cookie: NEXT_LOCALE=en'"
+					},
+					"response": []
+				},
+				{
 					"name": "user-status",
 					"event": [
 						{
@@ -390,7 +441,7 @@
 					"response": []
 				},
 				{
-					"name": "guidance-url",
+					"name": "guidance-url(URL-apply)",
 					"event": [
 						{
 							"listen": "test",
@@ -689,6 +740,167 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "virtual-card-apply(api-apply)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"externalUserId\": \"c6341da8-93e6-40a0-9c1b-e75cb6c228d2\",\n    \"categoryId\": \"40102000\",\n    \"applyRef\": \"1759218057131\",\n    \"kycInfo\": {\n        \"sumsubShareToken\":  \"_act-sbx-jwt-eyJhbGciOiJub25lIn0.eyJqdGkiOiJfYWN0LXNieC02YWNiNDExYi02ODc2LTRiOTAtOTIwMC1lNjJkNmY0NWJmNGQiLCJ1cmwiOiJodHRwczovL2FwaS5zdW1zdWIuY29tIn0.\",\n        \"email\": \"UXLINKTEST102301@gmail.com\",\n        \"poaDocType\": \"LEASE_AND_PAYMENT\",\n        \"poaDocUrlList\": [\n            \"web3-s3/kyc/20250728/e723b5f4-c780-47f2-9387-d3a7155c8180.pdf\"\n        ],\n        \"poaDocDate\": \"2025-10-02\",\n        \"addressLine1\": \"184 Jalan Toa Payoh\",\n        \"addressLine2\": \"Singapore\",\n        \"state\": \"SH\",\n        \"city\": \"ShangHai\",\n        \"postalCode\": \"238867\",\n        \"country\": \"BG\",\n        \"occupation\": \"PHYSIOTHERAPIST\",\n        \"employmentStatus\": \"SELF_EMPLOYED\",\n        \"employmentJobIndustry\": \"INFORMATION\",\n        \"jobSeniority\": \"DIPLOMAT\",\n        \"purposeOfAccount\": \"CASH_ADVANCE_PROGRAM\",\n        \"sourceOfFunds\": \"OWN_BANK_ACCOUNT\",\n        \"sourceOfFundsCountry\": \"CN\",\n        \"sourceOfWealth\": \"EMPLOYMENT\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/card/v1/virtual-card/apply",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"virtual-card",
+								"apply"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://anydmp-gateway-internal.dcsuat.com/card/v1/virtual-card/apply' \\\n--header 'X-DAPI-API-KEY: 75D80777564245208326451043BFA12E' \\\n--header 'X-DAPI-SIGN: 9e25943e100555fa16b6f3bf32bb86e7354c7b53398f5d00cd0d41162ee7fd4e' \\\n--header 'X-DAPI-TIMESTAMP: 1759218057131' \\\n--header 'X-DAPI-NONCE: 24566' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"externalUserId\": \"c6341da8-93e6-40a0-9c1b-e75cb6c228d2\",\n    \"categoryId\": \"40102000\",\n    \"applyRef\": \"1759218057131\",\n    \"kycInfo\": {\n        \"sumsubShareToken\":  \"_act-sbx-jwt-eyJhbGciOiJub25lIn0.eyJqdGkiOiJfYWN0LXNieC02YWNiNDExYi02ODc2LTRiOTAtOTIwMC1lNjJkNmY0NWJmNGQiLCJ1cmwiOiJodHRwczovL2FwaS5zdW1zdWIuY29tIn0.\",\n        \"email\": \"UXLINKTEST102301@gmail.com\",\n        \"poaDocType\": \"LEASE_AND_PAYMENT\",\n        \"poaDocUrlList\": [\n            \"web3-s3/kyc/20250728/e723b5f4-c780-47f2-9387-d3a7155c8180.pdf\"\n        ],\n        \"poaDocDate\": \"2025-10-02\",\n        \"addressLine1\": \"184 Jalan Toa Payoh\",\n        \"addressLine2\": \"Singapore\",\n        \"state\": \"SH\",\n        \"city\": \"ShangHai\",\n        \"postalCode\": \"238867\",\n        \"country\": \"BG\",\n        \"occupation\": \"PHYSIOTHERAPIST\",\n        \"employmentStatus\": \"SELF_EMPLOYED\",\n        \"employmentJobIndustry\": \"INFORMATION\",\n        \"jobSeniority\": \"DIPLOMAT\",\n        \"purposeOfAccount\": \"CASH_ADVANCE_PROGRAM\",\n        \"sourceOfFunds\": \"OWN_BANK_ACCOUNT\",\n        \"sourceOfFundsCountry\": \"CN\",\n        \"sourceOfWealth\": \"EMPLOYMENT\"\n    }\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "file-upload-prepare",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fileNames\": [\"SOF_CRYPTO.pdf\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/account/v1/generate-file-upload-prepare",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"account",
+								"v1",
+								"generate-file-upload-prepare"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'api.uatdcd.com/account/v1/generate-file-upload-prepare' \\\n--header 'X-DAPI-API-KEY: 25941630059C4B9EA000A7602203D341' \\\n--header 'X-DAPI-SIGN: ede53e5c9804fc6b7e21bd1aba2847ef201d40d4f4c9a925b7ccbcffd36d89c6' \\\n--header 'X-DAPI-TIMESTAMP: 1764754313790' \\\n--header 'X-DAPI-NONCE: 31544' \\\n--header 'x-gray-env: uxlink' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"fileNames\": [\"SOF_CRYPTO.pdf\"]\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "upload-edd-file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"externalUserId\": \"b033b007-9c04-41f2-9cab-a6a51d4164cc\",\n  \"requestRef\": \"1759218057131\",\n  \"applyId\": \"4637812972772726273\",\n   \"eddSowSalary\": {\n    \"employerName\": \"employerName000888\",\n    \"jobTitle\": \"jobTitle6767\",\n    \"annualIncome\": \"annualIncome666\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowBizRevenue\": {\n    \"businessName\": \"Binance666\",\n    \"natureOfBusiness\": \"ALL666\",\n    \"annualRevenue\":\"28000111.89\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowGift\": {\n    \"contributorName\": \"Property666\",\n    \"relationshipToYou\": \"friend666\",\n    \"contributorSourceOfWealth\":\"工资666\",\n    \"estimatedNetWorth\":\"100000666\",\n    \"typeOfAssets\":\"人民币111\",\n    \"yearAssetsReceived\":\"200000111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n   \"eddSowInheritance\": {\n    \"deceasedName\": \"Deceased.Name11\",\n    \"relationshipToYou\": \"friend11\",\n    \"yearInherited\": \"202011\",\n    \"approximateValue\": \"36000011\",\n    \"typeOfAssets\": \"现金111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_SAVING_PNG.png\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/f9dc845e-518f-4e42-9811-44d18c86f1f0.png\"\n      }\n    ]\n  },\n  \"eddSowInvest\": {\n    \"typeOfInvestment\": \"typeOfInvestment111\",\n    \"approximateValue\": \"8000000\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"2505.10636v1.pdf\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/0b1bfe08-f8cf-44a6-84eb-339679f9d183.pdf\"\n      }\n    ]\n  }\n\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/account/v1/upload-edd-file",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"account",
+								"v1",
+								"upload-edd-file"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://anydmp-gateway-internal.dcsuat.com/account/v1/upload-edd-file' \\\n--header 'X-DAPI-API-KEY: 75D80777564245208326451043BFA12E' \\\n--header 'X-DAPI-SIGN: 9e25943e100555fa16b6f3bf32bb86e7354c7b53398f5d00cd0d41162ee7fd4e' \\\n--header 'X-DAPI-TIMESTAMP: 1759218057131' \\\n--header 'X-DAPI-NONCE: 24566' \\\n--header 'x-gray-env: uxlink' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"externalUserId\": \"b033b007-9c04-41f2-9cab-a6a51d4164cc\",\n  \"requestRef\": \"1759218057131\",\n  \"applyId\": \"4637812972772726273\",\n   \"eddSowSalary\": {\n    \"employerName\": \"employerName000888\",\n    \"jobTitle\": \"jobTitle6767\",\n    \"annualIncome\": \"annualIncome666\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowBizRevenue\": {\n    \"businessName\": \"Binance666\",\n    \"natureOfBusiness\": \"ALL666\",\n    \"annualRevenue\":\"28000111.89\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowGift\": {\n    \"contributorName\": \"Property666\",\n    \"relationshipToYou\": \"friend666\",\n    \"contributorSourceOfWealth\":\"工资666\",\n    \"estimatedNetWorth\":\"100000666\",\n    \"typeOfAssets\":\"人民币111\",\n    \"yearAssetsReceived\":\"200000111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n   \"eddSowInheritance\": {\n    \"deceasedName\": \"Deceased.Name11\",\n    \"relationshipToYou\": \"friend11\",\n    \"yearInherited\": \"202011\",\n    \"approximateValue\": \"36000011\",\n    \"typeOfAssets\": \"现金111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_SAVING_PNG.png\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/f9dc845e-518f-4e42-9811-44d18c86f1f0.png\"\n      }\n    ]\n  },\n  \"eddSowInvest\": {\n    \"typeOfInvestment\": \"typeOfInvestment111\",\n    \"approximateValue\": \"8000000\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"2505.10636v1.pdf\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/0b1bfe08-f8cf-44a6-84eb-339679f9d183.pdf\"\n      }\n    ]\n  }\n\n}\n'"
+					},
+					"response": []
 				}
 			]
 		},
@@ -902,6 +1114,87 @@
 								"card",
 								"v1",
 								"block"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "card-transaction/id/resolve",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/card/v1/transaction/id/resolve",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"card",
+								"v1",
+								"transaction",
+								"id",
+								"resolve"
 							]
 						}
 					},
