@@ -1,11 +1,162 @@
 {
 	"info": {
-		"_postman_id": "10ab5b72-8aa8-4985-9611-799f24d0a1f8",
+		"_postman_id": "b29f9eaa-4fea-452d-8d27-5e9cb6e2f380",
 		"name": "OPENAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "5209098"
+		"_exporter_id": "120067"
 	},
 	"item": [
+		{
+			"name": "captcha",
+			"item": [
+				{
+					"name": "send-mobile-code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileCode\":\"SG\", \n    \"mobile\": \"88998838\",\n    \"behavioral\":\"REGISTER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/captcha/v1/send-mobile-code",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"captcha",
+								"v1",
+								"send-mobile-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send-mobile-code-request external_user_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-DAPI-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-SIGN",
+								"value": "{{SIGNATURE}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-TIMESTAMP",
+								"value": "{{timestamp}}",
+								"type": "text"
+							},
+							{
+								"key": "X-DAPI-NONCE",
+								"value": "{{nonce}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileCode\":\"CN\", \n    \"mobile\": \"\",\n    \"behavioral\":\"REGISTER\",\n    \"externalUserId\":\"95a9b590-7edb-47af-a365-6f4a02ed2231\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/captcha/v1/send-mobile-code",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"captcha",
+								"v1",
+								"send-mobile-code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "account",
 			"item": [
@@ -19,7 +170,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -29,7 +181,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -57,14 +210,15 @@
 								"type": "text"
 							},
 							{
-								"key": "x-gray-env",
-								"value": "openapi",
-								"type": "text"
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"mobileCode\":\"CN\",\n    \"mobile\": \"{{mobile}}\",\n    \"smsCode\":\"111111\"\n}",
+							"raw": "{\n    \"mobileCode\":\"SG\",\n    \"mobile\": \"88998878\",\n    \"smsCode\":\"111111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +249,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -105,7 +260,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -134,7 +290,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/kyc-status?externalUserId=a38d2305-0c7e-46f9-b14a-93e6598230b5",
+							"raw": "{{host}}/account/v1/kyc-status?externalUserId=442e0a33-0a31-40b5-ae64-7b9d562faa1f",
 							"host": [
 								"{{host}}"
 							],
@@ -146,11 +302,11 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "a38d2305-0c7e-46f9-b14a-93e6598230b5"
+									"value": "442e0a33-0a31-40b5-ae64-7b9d562faa1f"
 								},
 								{
-									"key": "team",
-									"value": "bg",
+									"key": "",
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -168,7 +324,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -178,7 +335,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -207,7 +365,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/user-status?externalUserId=fb9ed047-e097-4892-a391-4acfeba3884f",
+							"raw": "{{host}}/account/v1/user-status?externalUserId=442e0a33-0a31-40b5-ae64-7b9d562faa1f",
 							"host": [
 								"{{host}}"
 							],
@@ -219,11 +377,11 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "fb9ed047-e097-4892-a391-4acfeba3884f"
+									"value": "442e0a33-0a31-40b5-ae64-7b9d562faa1f"
 								},
 								{
-									"key": "team",
-									"value": "bg",
+									"key": "",
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -241,7 +399,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -251,7 +410,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -279,15 +439,15 @@
 								"type": "text"
 							},
 							{
-								"key": "X-TEAM",
-								"value": "bg",
+								"key": "",
+								"value": "",
 								"type": "text",
 								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"action\":\"KYC_GUIDE\", \n    \"externalUserId\": \"a38d2305-0c7e-46f9-b14a-93e6598230b5\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\",\n    \"cardMantissa\":\"1111\",\n    \"language\":\"en\",\n    \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36\"\n}",
+							"raw": "{\n    \"action\":\"KYC_GUIDE\", \n    \"externalUserId\": \"442e0a33-0a31-40b5-ae64-7b9d562faa1f\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\",\n    \"cardMantissa\":\"1111\",\n    \"language\":\"en\",\n    \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -318,7 +478,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -328,7 +489,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -356,9 +518,10 @@
 								"type": "text"
 							},
 							{
-								"key": "X-TEAM",
-								"value": "bg",
-								"type": "text"
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -394,7 +557,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -404,7 +568,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -433,7 +598,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/account/v1/query-travel-rule?externalUserId=a38d2305-0c7e-46f9-b14a-93e6598230b5",
+							"raw": "{{host}}/account/v1/query-travel-rule?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
 							"host": [
 								"{{host}}"
 							],
@@ -445,7 +610,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "a38d2305-0c7e-46f9-b14a-93e6598230b5"
+									"value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
 								}
 							]
 						}
@@ -462,7 +627,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -472,7 +638,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -502,7 +669,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"externalUserId\": \"a38d2305-0c7e-46f9-b14a-93e6598230b5\",\n  \"channelName\": \"MOBILE_APP\",\n  \"institutionName\": \"Example Bank Ltd\",\n  \"name\": \"ZHANG SAN\",\n  \"id\": {\n    \"type\": \"PASSPORT\",\n    \"value\": \"E12345678\",\n    \"countryOfIssue\": \"CN\"\n  },\n  \"address\": {\n    \"city\": \"SHANGHAI\",\n    \"country\": \"ZHONGGUO\",\n    \"dependentLocality\": \"PUDONG XIN QU\",\n    \"postalCode\": \"200120\",\n    \"region\": \"SHANGHAI SHI\",\n    \"addressLines\": \"LUJIAZUI JINRONG ZHONGXIN 88 HAO 1201 SHI\"\n  },\n  \"dateOfBirth\": \"1990-01-01\",\n  \"placeOfBirth\": \"BEIJING\"\n}\n",
+							"raw": "{\n  \"externalUserId\": \"68c80b21-ffde-4d02-afa0-6765afc48e36\",\n  \"channelName\": \"MOBILE_APP\",\n  \"institutionName\": \"Example Bank Ltd\",\n  \"name\": \"ZHANG SI\",\n  \"id\": {\n    \"type\": \"PASSPORT\",\n    \"value\": \"E12345679\",\n    \"countryOfIssue\": \"CN\"\n  },\n  \"address\": {\n    \"city\": \"SHANGHAI\",\n    \"country\": \"CN\",\n    \"dependentLocality\": \"PUDONG XIN QU\",\n    \"postalCode\": \"200120\",\n    \"region\": \"SHANGHAI SHI\",\n    \"addressLines\": \"LUJIAZUI JINRONG ZHONGXIN 88 HAO 1201 SHI\"\n  },\n  \"dateOfBirth\": \"1990-01-01\",\n  \"placeOfBirth\": \"CN\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -526,86 +693,10 @@
 			]
 		},
 		{
-			"name": "captcha",
-			"item": [
-				{
-					"name": "send-mobile-code",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-DAPI-API-KEY",
-								"value": "{{apiKey}}",
-								"type": "text"
-							},
-							{
-								"key": "X-DAPI-SIGN",
-								"value": "{{SIGNATURE}}",
-								"type": "text"
-							},
-							{
-								"key": "X-DAPI-TIMESTAMP",
-								"value": "{{timestamp}}",
-								"type": "text"
-							},
-							{
-								"key": "X-DAPI-NONCE",
-								"value": "{{nonce}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"mobileCode\":\"SG\", \n    \"mobile\": \"18917360296\",\n    \"behavioral\":\"REGISTER\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/captcha/v1/send-mobile-code",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"captcha",
-								"v1",
-								"send-mobile-code"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "card",
 			"item": [
 				{
-					"name": "card-list",
+					"name": "card-list(废弃)",
 					"event": [
 						{
 							"listen": "test",
@@ -676,7 +767,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -686,7 +778,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -715,7 +808,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/card/v1/detail?externalUserId=902ed998-3b0d-46ad-9f78-f52b3a6f4046&cardMantissa=2266",
+							"raw": "{{host}}/card/v1/detail?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&cardMantissa=5187",
 							"host": [
 								"{{host}}"
 							],
@@ -727,11 +820,11 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "902ed998-3b0d-46ad-9f78-f52b3a6f4046"
+									"value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
 								},
 								{
 									"key": "cardMantissa",
-									"value": "2266"
+									"value": "5187"
 								}
 							]
 						}
@@ -815,7 +908,7 @@
 					"response": []
 				},
 				{
-					"name": "card-transactions",
+					"name": "card-transactions(不推荐使用)",
 					"event": [
 						{
 							"listen": "test",
@@ -824,7 +917,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -834,7 +928,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -864,7 +959,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"cardMantissa\":\"2266\",\n    \"page\":\"2\",\n    \"size\":\"10\"\n    }",
+							"raw": "{\n    \"externalUserId\":\"68c80b21-ffde-4d02-afa0-6765afc48e36\",\n    \"cardMantissa\":\"5187\",\n    \"page\":\"1\",\n    \"size\":\"10\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -895,7 +990,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -905,7 +1001,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -934,7 +1031,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/card/v1/statements?externalUserId=76b1e528-4c27-44d1-8167-6ee5364e252a&page=1&rows=100",
+							"raw": "{{host}}/card/v1/statements?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&page=1&rows=100",
 							"host": [
 								"{{host}}"
 							],
@@ -946,7 +1043,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "76b1e528-4c27-44d1-8167-6ee5364e252a"
+									"value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
 								},
 								{
 									"key": "page",
@@ -971,7 +1068,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -981,7 +1079,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1010,7 +1109,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/card/v1/statements/detail?externalUserId=76b1e528-4c27-44d1-8167-6ee5364e252a&page=1&rows=100&statementId=NO_POSTED",
+							"raw": "{{host}}/card/v1/statements/detail?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&page=1&rows=100&statementId=NO_POSTED",
 							"host": [
 								"{{host}}"
 							],
@@ -1023,7 +1122,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "76b1e528-4c27-44d1-8167-6ee5364e252a"
+									"value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
 								},
 								{
 									"key": "page",
@@ -1125,7 +1224,7 @@
 			"name": "wallet",
 			"item": [
 				{
-					"name": "coin-list-FBS",
+					"name": "coin-list(废弃)",
 					"event": [
 						{
 							"listen": "test",
@@ -1193,7 +1292,7 @@
 					"response": []
 				},
 				{
-					"name": "deposit-address-FBS",
+					"name": "deposit-address-FBS（废弃）",
 					"event": [
 						{
 							"listen": "test",
@@ -1278,7 +1377,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1288,7 +1388,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1317,7 +1418,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/crypto/v1/deposit-address?network=TRON&coin=USDC&externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
+							"raw": "{{host}}/crypto/v1/deposit-address?network=TRON&coin=USDC&externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
 							"host": [
 								"{{host}}"
 							],
@@ -1337,7 +1438,7 @@
 								},
 								{
 									"key": "externalUserId",
-									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
+									"value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
 								}
 							]
 						}
@@ -1359,7 +1460,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1369,7 +1471,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1398,7 +1501,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/user-asset/v1/balance?externalUserId=46438c1a-3bec-464d-93ca-c69699b54e8e",
+							"raw": "{{host}}/user-asset/v1/balance?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
 							"host": [
 								"{{host}}"
 							],
@@ -1410,7 +1513,7 @@
 							"query": [
 								{
 									"key": "externalUserId",
-									"value": "46438c1a-3bec-464d-93ca-c69699b54e8e"
+									"value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
 								}
 							]
 						}
@@ -1427,7 +1530,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1437,7 +1541,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1465,14 +1570,15 @@
 								"type": "text"
 							},
 							{
-								"key": "X-TEAM",
-								"value": "bg",
-								"type": "text"
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"externalUserId\":\"46438c1a-3bec-464d-93ca-c69699b54e8e\",\n    \"page\":\"1\",\n    \"size\":\"100\"\n        }",
+							"raw": "{\n    \"externalUserId\": \"68c80b21-ffde-4d02-afa0-6765afc48e36\",\n    \"page\": \"1\",\n    \"size\": \"100\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1503,7 +1609,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1513,7 +1620,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1565,7 +1673,7 @@
 					"response": []
 				},
 				{
-					"name": "asset-credit",
+					"name": "asset-credit(废弃)",
 					"event": [
 						{
 							"listen": "test",
@@ -1574,7 +1682,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1584,7 +1693,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1636,7 +1746,7 @@
 					"response": []
 				},
 				{
-					"name": "asset-debit",
+					"name": "asset-debit(废弃)",
 					"event": [
 						{
 							"listen": "test",
@@ -1645,7 +1755,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1655,7 +1766,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1707,7 +1819,7 @@
 					"response": []
 				},
 				{
-					"name": "transfer-query",
+					"name": "transfer-query(废弃)",
 					"event": [
 						{
 							"listen": "test",
@@ -1716,7 +1828,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1726,7 +1839,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
