@@ -37,57 +37,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"mobileCode\":\"SGa a a\", \n    \"mobile\": \"88998838\",\n    \"behavioral\":\"REGISTER\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/captcha/v1/send-mobile-code",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "captcha",
-                "v1",
-                "send-mobile-code"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "send-mobile-code-request external_user_id",
-          "id": "bf3021fc-3276-4146-9b34-b9674f5ceacc",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "X-DAPI-API-KEY",
-                "value": "{{apiKey}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-SIGN",
-                "value": "{{SIGNATURE}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-TIMESTAMP",
-                "value": "{{timestamp}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-NONCE",
-                "value": "{{nonce}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"mobileCode\":\"CN\", \n    \"mobile\": \"\",\n    \"behavioral\":\"REGISTER\",\n    \"externalUserId\":\"95a9b590-7edb-47af-a365-6f4a02ed2231\"\n}",
+              "raw": "{\n    \"mobileCode\":\"SG\", \n    \"mobile\": \"88998838\",\n    \"behavioral\":\"REGISTER\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
