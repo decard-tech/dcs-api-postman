@@ -6,61 +6,11 @@
   },
   "item": [
     {
-      "name": "captcha--new",
+      "name": "captcha",
       "item": [
         {
           "name": "send-mobile-code",
           "id": "747f15ed-1bd7-4164-be0a-b48fe06f3e78",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "X-DAPI-API-KEY",
-                "value": "{{apiKey}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-SIGN",
-                "value": "{{SIGNATURE}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-TIMESTAMP",
-                "value": "{{timestamp}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-NONCE",
-                "value": "{{nonce}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"mobileCode\":\"SG\", \n    \"mobile\": \"88998838\",\n    \"behavioral\":\"REGISTER\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/captcha/v1/send-mobile-code",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "captcha",
-                "v1",
-                "send-mobile-code"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "send-mobile-code Copy",
-          "id": "6b54fa23-1344-4583-8f6e-da10eb45803a",
           "request": {
             "method": "POST",
             "header": [
