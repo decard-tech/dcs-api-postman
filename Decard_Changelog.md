@@ -1,5 +1,15 @@
 ## Change Logs
 
+# 20251224
+__Account__
+
+- POST /account/v1/update-extra-info
+
+
+__Card__
+
+- GET /card/v1/physical-shipping-info
+
 # 20250621
 __Account__
 
