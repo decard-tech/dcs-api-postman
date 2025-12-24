@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "b29f9eaa-4fea-452d-8d27-5e9cb6e2f380",
-    "name": "OPENAPI",
+    "name": "DeCard OPENAPI",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -648,6 +648,35 @@
             "description": "Generated from cURL: curl --location 'http://anydmp-gateway-internal.dcsuat.com/account/v1/upload-edd-file' \\\n--header 'X-DAPI-API-KEY: 75D80777564245208326451043BFA12E' \\\n--header 'X-DAPI-SIGN: 9e25943e100555fa16b6f3bf32bb86e7354c7b53398f5d00cd0d41162ee7fd4e' \\\n--header 'X-DAPI-TIMESTAMP: 1759218057131' \\\n--header 'X-DAPI-NONCE: 24566' \\\n--header 'x-gray-env: uxlink' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"externalUserId\": \"b033b007-9c04-41f2-9cab-a6a51d4164cc\",\n  \"requestRef\": \"1759218057131\",\n  \"applyId\": \"4637812972772726273\",\n   \"eddSowSalary\": {\n    \"employerName\": \"employerName000888\",\n    \"jobTitle\": \"jobTitle6767\",\n    \"annualIncome\": \"annualIncome666\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowBizRevenue\": {\n    \"businessName\": \"Binance666\",\n    \"natureOfBusiness\": \"ALL666\",\n    \"annualRevenue\":\"28000111.89\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowGift\": {\n    \"contributorName\": \"Property666\",\n    \"relationshipToYou\": \"friend666\",\n    \"contributorSourceOfWealth\":\"工资666\",\n    \"estimatedNetWorth\":\"100000666\",\n    \"typeOfAssets\":\"人民币111\",\n    \"yearAssetsReceived\":\"200000111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n   \"eddSowInheritance\": {\n    \"deceasedName\": \"Deceased.Name11\",\n    \"relationshipToYou\": \"friend11\",\n    \"yearInherited\": \"202011\",\n    \"approximateValue\": \"36000011\",\n    \"typeOfAssets\": \"现金111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_SAVING_PNG.png\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/f9dc845e-518f-4e42-9811-44d18c86f1f0.png\"\n      }\n    ]\n  },\n  \"eddSowInvest\": {\n    \"typeOfInvestment\": \"typeOfInvestment111\",\n    \"approximateValue\": \"8000000\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"2505.10636v1.pdf\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/0b1bfe08-f8cf-44a6-84eb-339679f9d183.pdf\"\n      }\n    ]\n  }\n\n}\n'"
           },
           "response": []
+        },
+        {
+          "name": "update-extra-info",
+          "id": "6160f036-9941-415f-a02c-68827ce15f5a",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"454bc7a1-a9f0-4563-a39c-2e19bc9e120d\",\n    \"virtualCardFullName\": \"testname\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/account/v1/update-extra-info",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "account",
+                "v1",
+                "update-extra-info"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "id": "bf2dda2f-9c40-4348-9b5a-9e3d694f0ed9"
@@ -1075,6 +1104,38 @@
                 {
                   "key": "rows",
                   "value": "50"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "physical-shipping-info",
+          "id": "a0713c7c-10bb-4429-ac8e-3ebb76e5fa06",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/card/v1/physical-shipping-info?externalUserId=b85791a1-a518-4e44-b7f5-d5e01ec6ffed&cardMantissa=3596",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v1",
+                "physical-shipping-info"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "b85791a1-a518-4e44-b7f5-d5e01ec6ffed",
+                  "uuid": "3a8e9c67-235d-430a-a99d-f6d61b18fbad"
+                },
+                {
+                  "key": "cardMantissa",
+                  "value": "3596",
+                  "uuid": "2f8a2a19-d0be-4695-ab72-f5fe915ad1c9"
                 }
               ]
             }
@@ -1716,8 +1777,10 @@
     {
       "listen": "prerequest",
       "script": {
+        "id": "92dccc5c-8192-4244-99fe-00a3f30d5926",
         "type": "text/javascript",
         "packages": {},
+        "requests": {},
         "exec": [
           "//生成随机数",
           "let randomNumber = Math.floor(Math.random() * 1000000000000); // 生成 0 到 999999999999 之间的随机数",
@@ -1811,7 +1874,25 @@
           "const signature = signatureGenerator.getSignature(apiKey + timestamp + nonce + rawBody);",
           "pm.globals.set('SIGNATURE', signature);",
           "// pm.request.headers.add({key: 'x-gray-env', value: 'openapi'});",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-API-KEY',",
+          "    value: apiKey",
+          "});",
           "",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-SIGN',",
+          "    value: signature",
+          "});",
+          "",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-TIMESTAMP',",
+          "    value: timestamp",
+          "});",
+          "",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-NONCE',",
+          "    value: nonce",
+          "});",
           "// console.log(signature);",
           ""
         ]
@@ -1820,8 +1901,10 @@
     {
       "listen": "test",
       "script": {
+        "id": "11f3b5c2-c381-4b5c-8651-028296a36fcf",
         "type": "text/javascript",
         "packages": {},
+        "requests": {},
         "exec": [
           ""
         ]
