@@ -1,0 +1,1095 @@
+{
+  "info": {
+    "_postman_id": "e9a1318d-98b3-4865-bfaa-0f8d15d7148e",
+    "name": "Card Bridge OpenAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "card order",
+      "item": [
+        {
+          "name": "create virtual card order",
+          "id": "e7c649df-d37a-46ab-a219-d77af6dff18b",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": \"4538749501943027969\",\n    \"cardOrderRef\": \"9\",\n    \"customerInfo\": {\n        \"phoneCountryCode\": \"86\",\n        \"phone\": \"+8613800138000\",\n        \"email\": \"123467@qq.com\"\n    },\n    \"kycInfo\": {\n        \"sumsubShareToken\": \"12\",\n        \"poaDocType\": \"UTILITY_BILL\",\n        \"poaDocUrlList\": [\n            \"http://www.baidu.com\"\n        ],\n        \"poaDocDate\": \"2024-01-01\",\n        \"addressLine1\": \"123 Orchard Road\",\n        \"addressLine2\": \"#04-56\",\n        \"state\": \"SH\",\n        \"city\": \"ShangHai\",\n        \"postalCode\": \"238867\",\n        \"country\": \"BG\",\n        \"employmentStatus\": \"EMPLOYED\",\n        \"employerName\": \"employerName\",\n        \"employmentJobIndustry\": \"RETAIL_TRADE\",\n        \"occupation\": \"PHYSIOTHERAPIST\",\n        \"jobSeniority\": \"DIRECTOR\",\n        \"purposeOfAccount\": \"CASH_ADVANCE_PROGRAM\",\n        \"sourceOfFunds\": \"OWN_BANK_ACCOUNT\",\n        \"sourceOfFundsCountry\": \"CN\",\n        \"sourceOfWealth\": \"EMPLOYMENT\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-order/v1/apply-virtual",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-order",
+                "v1",
+                "apply-virtual"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "virtual to physical",
+          "id": "8429c92a-b407-4488-be9e-8d68cf4837cc",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardOrderRef\": \"202506201556\",\n    \"replaceCardId\": \"4578334137853731841\",\n    \"virtualToPhysicalInfo\": {\n        \"postalCode\": \"542317\",\n        \"address\": \"307B Anchirvale road\",\n        \"address2\": \"#01-200\",\n        \"address3\": \"Anchirvale Place\",\n        \"address4\": \"Anchirvale Place\",\n        \"address5\": \"Anchirvale Place\",\n        \"countryCode\": \"SG\",\n        \"city\": \"Singapore City\",\n        \"province\": \"Singapore City\",\n        \"embossingName\": \"lee\",\n        \"cardLayoutCode\": \"MGEBP\",\n        \"needShippingInfo\": true\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-order/v1/virtual-to-physical",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-order",
+                "v1",
+                "virtual-to-physical"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "replace card",
+          "id": "d9f33519-8603-414c-8da1-6d906025db58",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardOrderRef\": \"202505231340\",\n    \"replaceCardId\": \"1112415958422523905\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-order/v1/replace",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-order",
+                "v1",
+                "replace"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get card order",
+          "id": "46ad030e-bf5c-4a9f-b937-96d11e9ae467",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-order/v1/detail?cardOrderId=4648341259241665024",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-order",
+                "v1",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "cardOrderId",
+                  "value": "4648341259241665024"
+                },
+                {
+                  "key": "cardOrderRef",
+                  "value": "2",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "fefdbc7a-1ad3-4077-8a80-b6b124a9b270"
+    },
+    {
+      "name": "card",
+      "item": [
+        {
+          "name": "get card",
+          "id": "41bc6903-ad2c-4690-b3f3-24db48d82ae5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "description": "{{X-API-KEY-UAT}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card/v1/detail?cardId=4591298458535677185",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card",
+                "v1",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "cardId",
+                  "value": "4591298458535677185"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "freeze card",
+          "id": "baa13b1d-c80c-4dd3-9ee0-e79bfc3f6830",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardId\":\"4534841263032857345\",\n    \"freeze\": false,\n    \"freezeReason\":\"USER_FREEZE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card/v1/freeze",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card",
+                "v1",
+                "freeze"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "terminate card",
+          "id": "2ade615e-91f3-4386-b305-be01fea3c5e4",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardId\":\"1112415958422523905\",\n    \"invalidateReason\": \"CARD_STOLEN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}}/open-api/card/v1/terminate",
+              "host": [
+                "{{open-api-host}}}"
+              ],
+              "path": [
+                "open-api",
+                "card",
+                "v1",
+                "terminate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "retrieve Secure Card",
+          "id": "5eed6a3f-a901-44e7-b7bf-706c9132c44a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardId\": \"1133840055626895360\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card/v1/retrieve-secure-card",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card",
+                "v1",
+                "retrieve-secure-card"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "active physical card",
+          "id": "6bce3655-b485-41b7-ab91-cbda6214937e",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardId\": \"1133713017146445825\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card/v1/physical-active",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card",
+                "v1",
+                "physical-active"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get card shipping info",
+          "id": "d6430e25-1f88-49f0-85b1-bca152411527",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "description": "{{X-API-KEY-UAT}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card/v1/shipping-info?cardId=4571449951368785664",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card",
+                "v1",
+                "shipping-info"
+              ],
+              "query": [
+                {
+                  "key": "cardId",
+                  "value": "4571449951368785664"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "guidance link for non-pci",
+          "id": "7761c8cf-527b-4eb3-abad-e6f515b06f58",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "description": "{{X-API-KEY-UAT}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardId\": \"1154377797108502528\",\n    \"customerId\": \"1154370114007601153\",\n    \"type\": \"2\",\n    \"preVerified\": \"0\",\n    \"language\": \"zh\",\n    \"theme\": \"default\",\n    \"mode\":\"dark\",\n    \"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-redirect/v1/guidance-link",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-redirect",
+                "v1",
+                "guidance-link"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get card-velocity-limits",
+          "id": "353ef76a-b0ca-4d77-bfdb-bea43650c5b8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card/v1/card-velocity-limits?cardId=4742333949794773761",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card",
+                "v1",
+                "card-velocity-limits"
+              ],
+              "query": [
+                {
+                  "key": "cardId",
+                  "value": "4742333949794773761",
+                  "uuid": "b9a7fbf5-aa44-48e8-9d38-bafe34a328f5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1aa605c4-2865-44b1-8866-496dac428713"
+    },
+    {
+      "name": "3ds",
+      "item": [
+        {
+          "name": "3ds challenge authenticate",
+          "id": "73ebf4a5-9f1c-4ea8-980e-43aecb17477a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"challengeId\":\"4527539408912732928\",\n    \"approveStatus\":\"APPROVE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/3ds-challenge/v1/authenticate",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "3ds-challenge",
+                "v1",
+                "authenticate"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "66357b65-ec89-4e42-ae85-84ab92a4c9dd"
+    },
+    {
+      "name": "intent ticket",
+      "item": [
+        {
+          "name": "generate pre upload url",
+          "id": "8c10b921-f9b3-4c29-96c3-9427b3151700",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"fileNames\":[\"4527539408912732928.pdf\"],\n    \"businessType\":\"CREATE_CARD_EDD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/intent-ticket/v1/generate-pre-upload-url",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "intent-ticket",
+                "v1",
+                "generate-pre-upload-url"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get intent ticket detail",
+          "id": "2abf1f2e-a37b-4db4-b280-52e39d28a0a4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/intent-ticket/v1/detail?ticketRef=20250424103402",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "intent-ticket",
+                "v1",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "ticketRef",
+                  "value": "20250424103402"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create intent ticket",
+          "id": "1ac5b772-c54e-408d-88ea-00d6571c95f8",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticketType\": \"CREATE_CARD_EDD\",\n  \"ticketRef\": \"20250424103402\",\n  \"businessType\": \"CARD_ORDER_ID\",\n  \"businessId\": \"11124054529744609291\",\n  \"eddSowSalary\": {\n    \"employerName\": \"string\",\n    \"jobTitle\": \"string\",\n    \"annualIncome\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSowBizRevenue\": {\n    \"businessName\": \"string\",\n    \"natureOfBusiness\": \"string\",\n    \"annualRevenue\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSowGift\": {\n    \"contributorName\": \"string\",\n    \"relationshipToYou\": \"string\",\n    \"contributorSourceOfWealth\": \"string\",\n    \"estimatedNetWorth\": \"string\",\n    \"typeOfAssets\": \"string\",\n    \"yearAssetsReceived\": \"string\",\n    \"recurringGifts\": {\n      \"frequencyPerPayment\": \"string\",\n      \"amountPerPayment\": \"string\",\n      \"numberOfYears\": \"string\"\n    },\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSowInheritance\": {\n    \"deceasedName\": \"string\",\n    \"relationshipToYou\": \"string\",\n    \"yearInherited\": \"string\",\n    \"approximateValue\": \"string\",\n    \"typeOfAssets\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSowInvest\": {\n    \"typeOfInvestment\": \"string\",\n    \"approximateValue\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSowOther\": {\n    \"description\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSofSaving\": {\n    \"employerName\": \"string\",\n    \"jobTitle\": \"string\",\n    \"annualIncome\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSofSale\": {\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSofBizRevenue\": {\n    \"businessName\": \"string\",\n    \"natureOfBusiness\": \"string\",\n    \"annualRevenue\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSofCrypto\": {\n    \"platform\": \"string\",\n    \"holdingType\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSofInvest\": {\n    \"typeOfInvestment\": \"string\",\n    \"approximateValue\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  },\n  \"eddSofOther\": {\n    \"description\": \"string\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"string\",\n        \"filePath\": \"string\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/intent-ticket/v1/create",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "intent-ticket",
+                "v1",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "c455a4d5-6146-4224-bb1b-27fd7f73e6e7"
+    },
+    {
+      "name": "enterprise",
+      "item": [
+        {
+          "name": "query enterprise balance",
+          "id": "1c50f87c-397a-4bc0-a7d8-8834faa3f21e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/enterprise/v1/enterprise-balance?currency=702",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "enterprise",
+                "v1",
+                "enterprise-balance"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "702"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get settlement file url",
+          "id": "f61af94f-0307-455c-b85c-fef1e6ba7ad6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{api-key}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{X-TIMESTAMP}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{X-DAPI-NONCE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{X-SIGNATURE}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/enterprise/v1/settlement-file-url?fileType=authorisation&fileDate=20250812",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "enterprise",
+                "v1",
+                "settlement-file-url"
+              ],
+              "query": [
+                {
+                  "key": "fileType",
+                  "value": "authorisation"
+                },
+                {
+                  "key": "fileDate",
+                  "value": "20250812"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "43c07b9c-17fb-4610-8b2b-b60c3c97b954"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          "// Pre-request script to generate HMAC-SHA256 signature in Postman",
+          "const CryptoJS = require('crypto-js');",
+          "",
+          "// Define your API secret here",
+          "const apiSecret = pm.environment.get('secret-key');",
+          "const apiKey = pm.environment.get('api-key');",
+          "",
+          "",
+          "// Function to generate HMAC-SHA256 signature",
+          "function getSignature(data, secret) {",
+          "    try {",
+          "        return CryptoJS.HmacSHA256(data, secret).toString(CryptoJS.enc.Hex);",
+          "    } catch (error) {",
+          "        throw new Error('Failed to calculate hmac-sha256: ' + error.message);",
+          "    }",
+          "}",
+          "",
+          "// Get the request URL and query parameters (if GET request)",
+          "const queryParams = pm.request.url.query ? pm.request.url.query.toString() : '';",
+          "const requestBody = pm.request.body ? pm.request.body.raw : '';",
+          "const nonce = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;",
+          "",
+          "// Combine request URL, query parameters, request body (for POST), and current timestamp",
+          "const timestamp = Date.now().toString()",
+          "const dataToSign = apiKey + timestamp + nonce + queryParams + requestBody ;",
+          "",
+          "// Generate the signature",
+          "const signature = getSignature(dataToSign, apiSecret);",
+          "",
+          "// Set the generated signature and timestamp as environment variables",
+          "pm.environment.set('X-SIGNATURE', signature);",
+          "pm.environment.set('X-TIMESTAMP', timestamp);",
+          "pm.environment.set('X-DAPI-NONCE', nonce);",
+          "",
+          "// Log the signature and timestamp for debugging purposes",
+          "console.log('dataToSign:', dataToSign);",
+          "console.log('Signature:', signature);",
+          "console.log('Timestamp:', timestamp);",
+          "console.log('nonce:', nonce);",
+          "",
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

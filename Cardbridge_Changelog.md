@@ -1,5 +1,10 @@
 ## Change Logs
 
+# 20251224
+__Card__
+
+- GET /open-api/card/v1/card-velocity-limits
+
 # 20250813
 __card order__
 
