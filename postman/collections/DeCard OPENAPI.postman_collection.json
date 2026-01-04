@@ -1170,7 +1170,7 @@
 					"response": []
 				},
 				{
-					"name": "deposit-address-FBS（废弃）",
+					"name": "deposit-address-v1（废弃）",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1224,7 +1224,7 @@
 					"response": []
 				},
 				{
-					"name": "deposit-address-fomo",
+					"name": "deposit-address-v2",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1250,7 +1250,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/crypto/v1/deposit-address?network=TRON&coin=USDC&externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
+							"raw": "{{host}}/crypto/v2/deposit-address?network=TRON&coin=USDC&externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
 							"host": [
 								"{{host}}"
 							],
