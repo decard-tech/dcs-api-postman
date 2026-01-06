@@ -1,6 +1,14 @@
 ## Change Logs
 
 # 20260106
+__QRPay__
+
+- POST /qrpay/v1/decode
+- POST /qrpay/v1/create
+- POST /qrpay/v1/confirm
+- GET /qrpay/v1/order-list
+- GET /qrpay/v1/order-detail
+
 __Financial-Connection__
 
 - POST /financial-connection/v1/create-user
