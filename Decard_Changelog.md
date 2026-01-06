@@ -1,5 +1,24 @@
 ## Change Logs
 
+# 20260106
+__Financial-Connection__
+
+- POST /financial-connection/v1/create-user
+- GET /financial-connection/v1/query-user-info
+- POST /financial-connection/v1/virtual-card/apply
+- GET /financial-connection/v1/virtual-card/detail
+- POST /financial-connection/v1/payment
+- GET /financial-connection/v1/query-payment-info
+- POST /financial-connection/v1/transfer-to-spending
+- GET /financial-connection/v1/query-transfer-info
+- POST /financial-connection/v1/withdraw
+- GET /financial-connection/v1/query-withdrawal-info
+- POST /financial-connection/v1/query-tran-list
+
+__Simulation__
+
+- POST /simulation/v1/fund-auth
+
 # 20251224
 __Account__
 
