@@ -944,28 +944,7 @@
           "id": "46ea6061-b6dd-4105-9169-5c135aaf2e92",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "X-DAPI-API-KEY",
-                "value": "{{apiKey}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-SIGN",
-                "value": "{{SIGNATURE}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-TIMESTAMP",
-                "value": "{{timestamp}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-NONCE",
-                "value": "{{nonce}}",
-                "type": "text"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{host}}/card/v1/statements?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&page=1&rows=100",
               "host": [
@@ -979,15 +958,18 @@
               "query": [
                 {
                   "key": "externalUserId",
-                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36",
+                  "uuid": "a592a565-aa58-480f-93d8-650075b5590f"
                 },
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "957997a8-c4b8-44b4-a6a6-64c3bb2ef7e8"
                 },
                 {
                   "key": "rows",
-                  "value": "100"
+                  "value": "100",
+                  "uuid": "66a813dd-6419-4b0a-b8f2-4c9c8f40d068"
                 }
               ]
             }
@@ -999,28 +981,7 @@
           "id": "4d05b99d-4f18-418c-b428-34b7acf6a0c8",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "X-DAPI-API-KEY",
-                "value": "{{apiKey}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-SIGN",
-                "value": "{{SIGNATURE}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-TIMESTAMP",
-                "value": "{{timestamp}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-NONCE",
-                "value": "{{nonce}}",
-                "type": "text"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{host}}/card/v1/statements/detail?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&page=1&rows=100&statementId=NO_POSTED",
               "host": [
@@ -1035,19 +996,23 @@
               "query": [
                 {
                   "key": "externalUserId",
-                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36",
+                  "uuid": "bb54acd5-6447-410a-a7f8-fac3f81a180a"
                 },
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "c67b87e8-27c2-471f-8c62-01666875513b"
                 },
                 {
                   "key": "rows",
-                  "value": "100"
+                  "value": "100",
+                  "uuid": "e050bf67-8af3-4dfe-893a-c4fcea807fbc"
                 },
                 {
                   "key": "statementId",
-                  "value": "NO_POSTED"
+                  "value": "NO_POSTED",
+                  "uuid": "656ebcf1-b680-491e-80c6-9f141c8b5abb"
                 }
               ]
             }
@@ -1059,28 +1024,7 @@
           "id": "56280d4f-e2a4-4b7d-97b9-cd41a17a7b0e",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "X-DAPI-API-KEY",
-                "value": "{{apiKey}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-SIGN",
-                "value": "{{SIGNATURE}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-TIMESTAMP",
-                "value": "{{timestamp}}",
-                "type": "text"
-              },
-              {
-                "key": "X-DAPI-NONCE",
-                "value": "{{nonce}}",
-                "type": "text"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{host}}/card/v1/fiat/transactions?externalUserId=a38d2305-0c7e-46f9-b14a-93e6598230b5&page=1&rows=50",
               "host": [
@@ -1095,15 +1039,18 @@
               "query": [
                 {
                   "key": "externalUserId",
-                  "value": "a38d2305-0c7e-46f9-b14a-93e6598230b5"
+                  "value": "a38d2305-0c7e-46f9-b14a-93e6598230b5",
+                  "uuid": "c14dd778-396e-48f1-83c5-c33cac6a8c2f"
                 },
                 {
                   "key": "page",
-                  "value": "1"
+                  "value": "1",
+                  "uuid": "f4d8d668-82af-4b94-bd82-67d3844195d9"
                 },
                 {
                   "key": "rows",
-                  "value": "50"
+                  "value": "50",
+                  "uuid": "5bd91438-1dff-433a-8c09-36853dd6f6a7"
                 }
               ]
             }
@@ -1771,13 +1718,378 @@
         }
       ],
       "id": "571b4cdd-b746-48d8-b00b-8168a8663f4b"
+    },
+    {
+      "name": "financial-connection",
+      "item": [
+        {
+          "name": "create-user",
+          "id": "57c6af86-b600-4f7f-bf9d-3812d9d6add7",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userRef\": \"user001\",\n  \"mobilePhone\": \"18611110001\",\n  \"mobileAreaCode\": \"CN\",\n  \"email\": \"18611110001@qq.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/create-user",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "create-user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "query-user-info",
+          "id": "fbbcbb58-9d7f-4792-b1cb-d34c3b71c912",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/query-user-info?userRef=18912341010&externalUserId=0eba0454-2c38-429f-ac48-10352b66a9c6",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "query-user-info"
+              ],
+              "query": [
+                {
+                  "key": "userRef",
+                  "value": "18912341010",
+                  "type": "text"
+                },
+                {
+                  "key": "externalUserId",
+                  "value": "0eba0454-2c38-429f-ac48-10352b66a9c6",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "virtual-card-apply",
+          "id": "d87a8deb-5bc2-414c-8ac8-a4ec8c5b6553",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"0eba0454-2c38-429f-ac48-10352b66a9c6\",\n    \"categoryId\": 30102001,\n    \"applyRef\": \"test12\",\n    \"kybInfo\": {\n        \"companyName\": \"test companyName\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/virtual-card/apply",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "virtual-card",
+                "apply"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "virtual-card-detail",
+          "id": "e2395989-5c8a-4577-8185-ec46d1c01d56",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/virtual-card/detail?externalUserId=0eba0454-2c38-429f-ac48-10352b66a9c6&applyId=4859070099673603840&applyRef=test10",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "virtual-card",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "0eba0454-2c38-429f-ac48-10352b66a9c6",
+                  "type": "text"
+                },
+                {
+                  "key": "applyId",
+                  "value": "4859070099673603840",
+                  "type": "text"
+                },
+                {
+                  "key": "applyRef",
+                  "value": "test10",
+                  "type": "text",
+                  "uuid": "165e6f4b-3ef6-4f8d-a556-3ef139790c5c"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "payment",
+          "id": "cd40cd09-1871-4078-bd33-52b99c0667e8",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalTranId\": \"tranid_17174\",\n    \"externalUserId\": \"3be6b937-7fe6-4051-be34-976a75e7b3b2\",\n    \"amount\": 0.2,\n    \"currency\": \"USD\",\n    \"remark\": \"test payment request\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/payment",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "payment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "query-payment-info",
+          "id": "97083591-c8d1-4709-aa1a-a5896b3db7f9",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/query-payment-info?externalTranId=202512230001003",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "query-payment-info"
+              ],
+              "query": [
+                {
+                  "key": "externalTranId",
+                  "value": "202512230001003"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "transfer-to-spending",
+          "id": "844fb392-326a-4223-b452-c918e5c5c916",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalTranId\": \"tranid_17170\",\n    \"externalUserId\": \"3be6b937-7fe6-4051-be34-976a75e7b3b2\",\n    \"amount\": 0.22,\n    \"currency\": \"USD\",\n    \"remark\": \"test payment request\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/transfer-to-spending",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "transfer-to-spending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "query-transfer-info",
+          "id": "8397c92e-2220-45a5-864b-7fe4de8245c2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/query-transfer-info?externalTranId=202512230001003",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "query-transfer-info"
+              ],
+              "query": [
+                {
+                  "key": "externalTranId",
+                  "value": "202512230001003"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "withdraw",
+          "id": "d06efda8-6b8a-463a-b615-96990e284066",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalTranId\": \"tranid_17188\",\n  \"externalUserId\": \"3be6b937-7fe6-4051-be34-976a75e7b3b2\",\n  \"amount\": 1.01,\n  \"currency\": \"USD\",\n  \"payeeName\": \"DCS CARD CENTRE PTE. LTD\",\n  \"payeeAddress\": \"XXX address no.123,sh,pudong\",\n  \"payeeBankAccountNo\": \"0106561073\",\n  \"payeeBankSwiftBic\": \"SCBLSG22XXX\",\n  \"payeeBankCountryCode\": \"SG\",\n  \"purposeOfPayment\": \"OTHR\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/withdraw",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "withdraw"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "query-withdrawal-info",
+          "id": "2831bc48-9957-4a9d-b7ba-107afab5e015",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/query-withdrawal-info?externalTranId=202512230001003",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "query-withdrawal-info"
+              ],
+              "query": [
+                {
+                  "key": "externalTranId",
+                  "value": "202512230001003"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "query-tran-list",
+          "id": "75c75193-98ec-43fd-a3e0-91b264b21081",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"3be6b937-7fe6-4051-be34-976a75e7b3b2\",\n    \"pageSize\": 10,\n    \"vaNumber\": \"88516299000003137\",\n    \"cursor\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/financial-connection/v1/query-tran-list",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "financial-connection",
+                "v1",
+                "query-tran-list"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "84433a9b-e4c4-4f4a-a82e-6ce67adde7ef"
+    },
+    {
+      "name": "simulation",
+      "item": [
+        {
+          "name": "fund-auth",
+          "id": "79a77def-96b7-4736-9330-e4f37917881c",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"442e0a33-0a31-40b5-ae64-7b9d562faa1f\",\n    \"cardMantissa\": \"2453\",\n    \"authType\": \"EXPEND\",\n    \"amount\": \"10.5\",\n    \"currency\": \"USD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/simulation/v1/fund-auth",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "simulation",
+                "v1",
+                "fund-auth"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "6e91a4e5-9594-41f0-9363-e1be2ffe807a"
     }
   ],
   "event": [
     {
       "listen": "prerequest",
       "script": {
-        "id": "92dccc5c-8192-4244-99fe-00a3f30d5926",
+        "id": "9843eaa1-98df-4f49-9a6a-c07b5832bb70",
         "type": "text/javascript",
         "packages": {},
         "requests": {},
@@ -1901,7 +2213,7 @@
     {
       "listen": "test",
       "script": {
-        "id": "11f3b5c2-c381-4b5c-8651-028296a36fcf",
+        "id": "692af6da-893c-48eb-b940-e4bd18d127a2",
         "type": "text/javascript",
         "packages": {},
         "requests": {},
