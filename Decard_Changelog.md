@@ -46,7 +46,7 @@ __Account__
 
 __Wallet__
 
-- GET /crypto/v2/deposit-address (Fomo Deposite)
+- GET /crypto/v2/deposit-address
 
 
 # 20241118
