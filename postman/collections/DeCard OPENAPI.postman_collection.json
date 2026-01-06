@@ -1143,7 +1143,7 @@
           "response": []
         },
         {
-          "name": "deposit-address-FBS（废弃）",
+          "name": "deposit-address-v1（废弃）",
           "id": "229779ff-9b3b-4c59-be72-66d1cde2b84d",
           "request": {
             "method": "GET",
@@ -1198,7 +1198,7 @@
           "response": []
         },
         {
-          "name": "deposit-address-fomo",
+          "name": "deposit-address-v2",
           "id": "a0d2d8f6-188e-4e35-8107-64bc50e41967",
           "request": {
             "method": "GET",
@@ -1225,27 +1225,30 @@
               }
             ],
             "url": {
-              "raw": "{{host}}/crypto/v1/deposit-address?network=TRON&coin=USDC&externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
+              "raw": "{{host}}/crypto/v2/deposit-address?network=TRON&coin=USDC&externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
               "host": [
                 "{{host}}"
               ],
               "path": [
                 "crypto",
-                "v1",
+                "v2",
                 "deposit-address"
               ],
               "query": [
                 {
                   "key": "network",
-                  "value": "TRON"
+                  "value": "TRON",
+                  "uuid": "932b7e7a-50cb-425a-91d7-27f5834b313b"
                 },
                 {
                   "key": "coin",
-                  "value": "USDC"
+                  "value": "USDC",
+                  "uuid": "e80a9143-4110-4097-8a26-a4f6e2b53c85"
                 },
                 {
                   "key": "externalUserId",
-                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36",
+                  "uuid": "f7412b73-30d9-4cc1-90ea-319f7e48b777"
                 }
               ]
             }
@@ -1718,6 +1721,264 @@
         }
       ],
       "id": "571b4cdd-b746-48d8-b00b-8168a8663f4b"
+    },
+    {
+      "name": "qrpay",
+      "item": [
+        {
+          "name": "qrpay/v1/decode",
+          "id": "a9dcccda-0e39-492a-9800-5475ee44ae57",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"b6fd22de-c7d5-44fa-b692-b9b575ed2ffb\",\n    \"qrCodeValue\": \"https://payapp.wechatpay.cn/sjt/qr/AQlT4zA06WQ-YqkSq8jL1MGV\",\n    \"clientIP\": \"127.0.0.1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/qrpay/v1/decode",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "qrpay",
+                "v1",
+                "decode"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "qrpay/v1/create",
+          "id": "0cb24767-0dba-45b7-bdf1-c5e7ff603c57",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"b6fd22de-c7d5-44fa-b692-b9b575ed2ffb\",\n    \"qrCodeValue\": \"https://payapp.wechatpay.cn/qrpay/order/home2?key=sandbox_CHNDVI_EGzpUDNZIWMGbC0d6dkPCw--\",\n    \"clientIP\": \"127.0.0.1\",\n    \"currency\": \"SGD\",\n    \"amount\": \"12\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/qrpay/v1/create",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "qrpay",
+                "v1",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "qrpay/v1/confirm",
+          "id": "dd6df36b-a7aa-4439-b3ab-4019936ecfba",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"b6fd22de-c7d5-44fa-b692-b9b575ed2ffb\",\n    \"orderId\": \"4840307532074132225\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/qrpay/v1/confirm",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "qrpay",
+                "v1",
+                "confirm"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "qrpay/v1/order-list",
+          "id": "21864977-ec37-4211-b1cb-20fcc7dbc347",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/qrpay/v1/order-list?externalUserId=b6fd22de-c7d5-44fa-b692-b9b575ed2ffb&cursorOrderId=4834845475832472321",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "qrpay",
+                "v1",
+                "order-list"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "b6fd22de-c7d5-44fa-b692-b9b575ed2ffb"
+                },
+                {
+                  "key": "cursorOrderId",
+                  "value": "4834845475832472321"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "qrpay/v1/order-detail",
+          "id": "857c025c-e3b3-4eea-8ddd-ec4ebc01e46c",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/qrpay/v1/order-detail?externalUserId=b6fd22de-c7d5-44fa-b692-b9b575ed2ffb&orderId=4843425548456975105",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "qrpay",
+                "v1",
+                "order-detail"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "b6fd22de-c7d5-44fa-b692-b9b575ed2ffb"
+                },
+                {
+                  "key": "orderId",
+                  "value": "4843425548456975105"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "666ac075-33b9-4736-8bb9-e38130a08729"
     },
     {
       "name": "financial-connection",
