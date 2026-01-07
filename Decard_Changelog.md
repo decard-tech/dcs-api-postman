@@ -1,5 +1,32 @@
 ## Change Logs
 
+# 20260106
+__QRPay__
+
+- POST /qrpay/v1/decode
+- POST /qrpay/v1/create
+- POST /qrpay/v1/confirm
+- GET /qrpay/v1/order-list
+- GET /qrpay/v1/order-detail
+
+__Financial-Connection__
+
+- POST /financial-connection/v1/create-user
+- GET /financial-connection/v1/query-user-info
+- POST /financial-connection/v1/virtual-card/apply
+- GET /financial-connection/v1/virtual-card/detail
+- POST /financial-connection/v1/payment
+- GET /financial-connection/v1/query-payment-info
+- POST /financial-connection/v1/transfer-to-spending
+- GET /financial-connection/v1/query-transfer-info
+- POST /financial-connection/v1/withdraw
+- GET /financial-connection/v1/query-withdrawal-info
+- POST /financial-connection/v1/query-tran-list
+
+__Simulation__
+
+- POST /simulation/v1/fund-auth
+
 # 20251224
 __Account__
 
@@ -19,7 +46,7 @@ __Account__
 
 __Wallet__
 
-- GET /crypto/v2/deposit-address (Fomo Deposite)
+- GET /crypto/v2/deposit-address
 
 
 # 20241118
