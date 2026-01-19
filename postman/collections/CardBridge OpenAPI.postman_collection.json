@@ -1198,59 +1198,6 @@
         },
         {
           "name": "apply-virtual-normal",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "5bd834a1-7654-4338-b29c-485846adce91",
-                "exec": [
-                  "/* Python脚本 (Postman不支持运行): 前置脚本",
-                  "# 前置脚本(python):",
-                  "# global_tools:全局工具函数",
-                  "# data:用例数据 ",
-                  "# env: 局部环境",
-                  "# ENV: 全局环境",
-                  "# db: 数据库操作对象",
-                  "timestamp = int(time.time() * 1000)",
-                  "data['request']['json'][\"cardOrderRef\"] = timestamp",
-                  "",
-                  "",
-                  "*/",
-                  "",
-                  "// 公共脚本引用: 1",
-                  "// 请在Postman中手动添加对应逻辑"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "265e44f2-cc0a-4be0-a8a3-70e39f0906bb",
-                "exec": [
-                  "/* Python脚本 (Postman不支持运行): 后置脚本",
-                  "# 后置脚本(python):",
-                  "# global_tools:全局工具函数",
-                  "# data:用例数据 ",
-                  "# response:响应对象response ",
-                  "# env: 局部环境",
-                  "# ENV: 全局环境",
-                  "# db: 数据库操作对象",
-                  "# Demo:jsonpath提取response中的msg字段  ",
-                  "cardOrderId = test.json_extract(response.json(),\"$..data.cardOrderId\")",
-                  "",
-                  "# 设置全局变量 ",
-                  "test.save_global_variable(\"cardOrderId\",cardOrderId)",
-                  "*/"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "id": "8e645d64-6c29-4fe3-a06f-deaa4dbe60b0",
           "request": {
             "method": "POST",
