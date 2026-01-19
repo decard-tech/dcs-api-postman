@@ -1,5 +1,13 @@
 ## Change Logs
 
+# 20260119
+__Normal CardApplyMode__
+
+- POST /open-api/customer/v1/create
+- GET /open-api/customer/v1/detail
+- POST /open-api/kyc-ticket/v1/apply
+- GET /open-api/kyc-ticket/v1/detail
+
 # 20251224
 __Card__
 
