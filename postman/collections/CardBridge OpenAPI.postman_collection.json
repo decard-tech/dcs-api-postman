@@ -1028,14 +1028,216 @@
         }
       ],
       "id": "43c07b9c-17fb-4610-8b2b-b60c3c97b954"
+    },
+    {
+      "name": "normal cardApplyMode",
+      "item": [
+        {
+          "name": "create-customer",
+          "id": "3ad25fff-93a7-42d0-b8c6-75a119b3d5bf",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"phoneCountryCode\": \"MY\",\n    \"phone\": \"122765673\",\n    \"email\": \"122765673@qq.com\",\n    \"customerRef\": \"user122765673\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/customer/v1/create-customer",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "customer",
+                "v1",
+                "create-customer"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "customer-detail",
+          "id": "d5a5f9c3-bbfd-453b-bf15-608f87d475b0",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/customer/v1/detail?customerId=4879846599637290752",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "customer",
+                "v1",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "customerId",
+                  "value": "4879846599637290752",
+                  "uuid": "ffa80674-0707-4988-ac3e-c2c03f93ed08"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "apply-kyc",
+          "id": "1e96ae15-8d3a-4a07-a6be-fe5def9ec34a",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"kycTicketRef\": \"487444861530117683\",\n    \"customerId\": \"4879846599637290752\",\n    \"identifyProofList\": [\n        {\n            \"identityProofUrl\": \"risk-center/kyc/2026-01-12/10169996/20260112/37d5782c-08da-45e9-8dac-3f43ff0f5897.jpg\",\n            \"identityProofType\": \"ID_CARD\",\n            \"identityProofSubType\": \"FRONT_SIDE\",\n            \"identityProofIssuedCountry\": \"MYS\"\n        },\n        {\n            \"identityProofUrl\": \"risk-center/kyc/2026-01-12/10169996/20260112/37d5782c-08da-45e9-8dac-3f43ff0f5897.jpg\",\n            \"identityProofType\": \"ID_CARD\",\n            \"identityProofSubType\": \"FRONT_SIDE\",\n            \"identityProofIssuedCountry\": \"MYS\"\n        }\n    ],\n    \"addressProofList\": [\n        {\n            \"addressProofType\": \"UTILITY_BILL\",\n            \"addressProofIssuedCountry\": \"CN\",\n            \"addressProofUrl\": \"risk-center/kyc/2026-01-12/10169996/20260112/37d5782c-08da-45e9-8dac-3f43ff0f5897.jpg\"\n        },\n        {\n            \"addressProofType\": \"UTILITY_BILL\",\n            \"addressProofIssuedCountry\": \"CN\",\n            \"addressProofUrl\": \"risk-center/kyc/2026-01-12/10169996/20260112/37d5782c-08da-45e9-8dac-3f43ff0f5897.jpg\"\n        }\n    ],\n    \"kycCareerInfo\": {\n        \"employmentStatus\": \"EMPLOYED\",\n        \"employerName\": \"LTD\",\n        \"employmentJobIndustry\": \"INFORMATION\",\n        \"occupation\": \"APPLICATION_PROGRAMMER\",\n        \"jobSeniority\": \"MANAGERIAL\",\n        \"purposeOfAccount\": \"DAILY_SPENDING\",\n        \"sourceOfFunds\": \"OWN_BANK_ACCOUNT\",\n        \"sourceOfFundsCountry\": \"SG\",\n        \"sourceOfWealth\": \"EMPLOYMENT\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/kyc-ticket/v1/apply-kyc",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "kyc-ticket",
+                "v1",
+                "apply-kyc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "kyc-ticket-detail",
+          "id": "53ef6e21-955a-476b-b40a-fb9e07e3d332",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/kyc-ticket/v1/detail?kycTicketId=4879840591766572801",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "kyc-ticket",
+                "v1",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "kycTicketId",
+                  "value": "4879840591766572801",
+                  "uuid": "c9644dee-bcfd-4e71-abd7-348be1d77edf"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "face verification",
+          "id": "2436d802-5205-4da6-97ba-bb1851818ba6",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"4879846599637290752\",\n    \"kycTicketId\": \"4879840591766572801\",\n    \"type\": \"4\",\n    \"otpStatus\": \"1\",\n    \"language\": \"zh\",\n    \"theme\": \"default\",\n    \"mode\": \"light\",\n    \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\",\n    \"successfulRedirectUrl\": \"http://www.baidu.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-redirect/v1/guidance-link",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-redirect",
+                "v1",
+                "guidance-link"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "apply-virtual-normal",
+          "id": "8e645d64-6c29-4fe3-a06f-deaa4dbe60b0",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"profileId\": \"4874478085033224960\",\n    \"cardType\": \"VIRTUAL\",\n    \"cardOrderRef\": \"17592183381555\",\n    \"cardApplyMode\": \"NORMAL\",\n    \"customerId\": \"4879846599637290752\",\n    \"kycTicketId\": \"4879840591766572801\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-order/v1/apply-virtual",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-order",
+                "v1",
+                "apply-virtual"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e124e4e2-8a27-4465-86a6-b824983fb968"
     }
   ],
   "event": [
     {
       "listen": "prerequest",
       "script": {
+        "id": "11762bb7-ab72-4011-8806-426ad770dbae",
         "type": "text/javascript",
         "packages": {},
+        "requests": {},
         "exec": [
           "// Pre-request script to generate HMAC-SHA256 signature in Postman",
           "const CryptoJS = require('crypto-js');",
@@ -1071,6 +1273,25 @@
           "pm.environment.set('X-TIMESTAMP', timestamp);",
           "pm.environment.set('X-DAPI-NONCE', nonce);",
           "",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-API-KEY',",
+          "    value: apiKey",
+          "});",
+          "",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-SIGN',",
+          "    value: signature",
+          "});",
+          "",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-TIMESTAMP',",
+          "    value: timestamp",
+          "});",
+          "",
+          "pm.request.headers.upsert({",
+          "    key: 'X-DAPI-NONCE',",
+          "    value: nonce",
+          "});",
           "// Log the signature and timestamp for debugging purposes",
           "console.log('dataToSign:', dataToSign);",
           "console.log('Signature:', signature);",
@@ -1086,6 +1307,7 @@
       "script": {
         "type": "text/javascript",
         "packages": {},
+        "requests": {},
         "exec": [
           ""
         ]
