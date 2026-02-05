@@ -40,7 +40,7 @@ __Card__
 # 20250621
 __Account__
 
-- GET /account/v1/query-travel-rule
+- GET /account/v2/query-travel-rule
 - POST /account/v1/update-travel-rule
 
 
