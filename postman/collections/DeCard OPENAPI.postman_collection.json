@@ -416,13 +416,13 @@
               }
             ],
             "url": {
-              "raw": "{{host}}/account/v1/query-travel-rule?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
+              "raw": "{{host}}/account/v2/query-travel-rule?externalUserId=98672b40-5223-438a-a710-3be618fb098f",
               "host": [
                 "{{host}}"
               ],
               "path": [
                 "account",
-                "v1",
+                "v2",
                 "query-travel-rule"
               ],
               "query": [
