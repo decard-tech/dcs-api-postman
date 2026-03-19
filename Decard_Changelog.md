@@ -1,5 +1,29 @@
 ## Change Logs
 
+# 20260319
+__Redirect__
+
+- POST /redirect/v2/guidance-link
+
+__Card__
+
+- GET /card/v2/detail
+- POST /card/v2/block
+- GET /card/v2/statements
+- GET /card/v2/statements/detail
+- GET /card/v2/physical-shipping-info
+
+__DigitalWallet__
+
+- POST /card/v1/apple-bind-wallet
+- POST /card/v2/apple-bind-wallet
+- POST /card/v1/google-bind-wallet
+- POST /card/v2/google-bind-wallet
+
+__Simulation__
+
+- POST /simulation/v2/fund-auth
+
 # 20260106
 __QRPay__
 
