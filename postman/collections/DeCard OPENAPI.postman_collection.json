@@ -1,8 +1,10 @@
 {
   "info": {
-    "_postman_id": "b29f9eaa-4fea-452d-8d27-5e9cb6e2f380",
+    "_postman_id": "cbaea984-6a28-4822-a282-3aae06f068cc",
     "name": "DeCard OPENAPI",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48701158",
+    "_collection_link": "https://go.postman.co/collection/48701158-cbaea984-6a28-4822-a282-3aae06f068cc?source=collection_link"
   },
   "item": [
     {
@@ -10,7 +12,6 @@
       "item": [
         {
           "name": "send-mobile-code",
-          "id": "747f15ed-1bd7-4164-be0a-b48fe06f3e78",
           "request": {
             "method": "POST",
             "header": [
@@ -58,15 +59,13 @@
           },
           "response": []
         }
-      ],
-      "id": "2e9422b0-fe73-4ac1-8550-e37677f64610"
+      ]
     },
     {
       "name": "account",
       "item": [
         {
           "name": "register",
-          "id": "9082aef6-112a-4a79-a407-7a3c5236e555",
           "request": {
             "method": "POST",
             "header": [
@@ -122,7 +121,6 @@
         },
         {
           "name": "kyc-status",
-          "id": "4bd67c3c-10ca-4965-b116-c48197cb92cd",
           "request": {
             "method": "GET",
             "header": [
@@ -174,7 +172,6 @@
         },
         {
           "name": "kyc-status-v2(查询文件处理进度)",
-          "id": "289ff23a-e2aa-4043-ac66-f9e92c2c837f",
           "request": {
             "method": "GET",
             "header": [
@@ -226,7 +223,6 @@
         },
         {
           "name": "user-status",
-          "id": "74d66129-11ef-489e-ad03-6e491e5650fa",
           "request": {
             "method": "GET",
             "header": [
@@ -278,7 +274,6 @@
         },
         {
           "name": "guidance-url(URL-apply)",
-          "id": "83e84842-9a2c-42e7-8ff5-11982cb603aa",
           "request": {
             "method": "POST",
             "header": [
@@ -333,8 +328,62 @@
           "response": []
         },
         {
+          "name": "guidance-url-v2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"action\":\"CARD_INFO\", \n    \"externalUserId\": \"442e0a33-0a31-40b5-ae64-7b9d562faa1f\",\n    \"successRedirectUrl\":\"https://www.baidu.com\",\n    \"errorRedirectUrl\":\"https://www.google.com\",\n    \"cardId\": \"4801387990654459905\",\n    \"language\":\"en\",\n    \"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/redirect/v2/guidance-link",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "redirect",
+                "v2",
+                "guidance-link"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "bind-invite-relationship",
-          "id": "a517a0e2-5a84-4134-a480-c9b9fc2138b1",
           "request": {
             "method": "POST",
             "header": [
@@ -390,7 +439,6 @@
         },
         {
           "name": "query-travel-rule",
-          "id": "21a83b52-cdb3-453a-a1cc-400a37745b3b",
           "request": {
             "method": "GET",
             "header": [
@@ -416,7 +464,7 @@
               }
             ],
             "url": {
-              "raw": "{{host}}/account/v2/query-travel-rule?externalUserId=98672b40-5223-438a-a710-3be618fb098f",
+              "raw": "{{host}}/account/v2/query-travel-rule?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36",
               "host": [
                 "{{host}}"
               ],
@@ -437,7 +485,6 @@
         },
         {
           "name": "update-travel-rule",
-          "id": "9eb36905-9ddc-4256-98f7-ccff7d029c58",
           "request": {
             "method": "POST",
             "header": [
@@ -487,7 +534,6 @@
         },
         {
           "name": "virtual-card-apply(api-apply)",
-          "id": "fd504540-65d5-474b-8739-a61f561e4d09",
           "request": {
             "method": "POST",
             "header": [
@@ -539,7 +585,6 @@
         },
         {
           "name": "file-upload-prepare",
-          "id": "e5a40897-b0b8-4db8-b94a-fe2a2b09a07c",
           "request": {
             "method": "POST",
             "header": [
@@ -595,7 +640,6 @@
         },
         {
           "name": "upload-edd-file",
-          "id": "b782e4e0-f508-41ee-bf72-fd04d78bc4f0",
           "request": {
             "method": "POST",
             "header": [
@@ -651,7 +695,6 @@
         },
         {
           "name": "update-extra-info",
-          "id": "6160f036-9941-415f-a02c-68827ce15f5a",
           "request": {
             "method": "POST",
             "header": [],
@@ -678,15 +721,13 @@
           },
           "response": []
         }
-      ],
-      "id": "bf2dda2f-9c40-4348-9b5a-9e3d694f0ed9"
+      ]
     },
     {
       "name": "card",
       "item": [
         {
           "name": "card-list(废弃)",
-          "id": "c4350a08-ad09-4c80-acb0-0e6dcc1f4990",
           "request": {
             "method": "GET",
             "header": [
@@ -727,7 +768,6 @@
         },
         {
           "name": "card-detail",
-          "id": "76f28fdd-c813-43c3-901b-985d3a2f034e",
           "request": {
             "method": "GET",
             "header": [
@@ -777,8 +817,58 @@
           "response": []
         },
         {
+          "name": "card-detail-v2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/card/v2/detail?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&cardId=4801387990654459905",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v2",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
+                },
+                {
+                  "key": "cardId",
+                  "value": "4801387990654459905",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "card-block",
-          "id": "a3f92f0c-792c-458e-9302-5f5bd626feb2",
           "request": {
             "method": "POST",
             "header": [
@@ -800,11 +890,6 @@
               {
                 "key": "X-DAPI-NONCE",
                 "value": "{{nonce}}",
-                "type": "text"
-              },
-              {
-                "key": "X-team",
-                "value": "bg",
                 "type": "text"
               }
             ],
@@ -832,8 +917,56 @@
           "response": []
         },
         {
+          "name": "card-block-v2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-DAPI-API-KEY",
+                "value": "{{apiKey}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-SIGN",
+                "value": "{{SIGNATURE}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-TIMESTAMP",
+                "value": "{{timestamp}}",
+                "type": "text"
+              },
+              {
+                "key": "X-DAPI-NONCE",
+                "value": "{{nonce}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\":\"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"block\":true,\n    \"cardId\": \"4963470291345054209\",\n    \"smsCode\":\"111111\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/card/v2/block",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v2",
+                "block"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "card-transaction/id/resolve",
-          "id": "32559267-6cde-4887-ac29-1702ea472d56",
           "request": {
             "method": "POST",
             "header": [
@@ -891,7 +1024,6 @@
         },
         {
           "name": "card-transactions(不推荐使用)",
-          "id": "4ede3946-87e1-4d45-af59-08bb4c2566a8",
           "request": {
             "method": "POST",
             "header": [
@@ -941,7 +1073,6 @@
         },
         {
           "name": "card-statements",
-          "id": "46ea6061-b6dd-4105-9169-5c135aaf2e92",
           "request": {
             "method": "GET",
             "header": [],
@@ -958,18 +1089,59 @@
               "query": [
                 {
                   "key": "externalUserId",
-                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36",
-                  "uuid": "a592a565-aa58-480f-93d8-650075b5590f"
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
                 },
                 {
                   "key": "page",
-                  "value": "1",
-                  "uuid": "957997a8-c4b8-44b4-a6a6-64c3bb2ef7e8"
+                  "value": "1"
                 },
                 {
                   "key": "rows",
-                  "value": "100",
-                  "uuid": "66a813dd-6419-4b0a-b8f2-4c9c8f40d068"
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "card-statements-v2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/card/v2/statements?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&page=1&rows=100&cardId=4830124625684341761",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v2",
+                "statements"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "rows",
+                  "value": "100"
+                },
+                {
+                  "key": "cardId",
+                  "value": "4830124625684341761",
+                  "type": "text"
+                },
+                {
+                  "key": "",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             }
@@ -978,7 +1150,6 @@
         },
         {
           "name": "card-statements-detail",
-          "id": "4d05b99d-4f18-418c-b428-34b7acf6a0c8",
           "request": {
             "method": "GET",
             "header": [],
@@ -996,23 +1167,68 @@
               "query": [
                 {
                   "key": "externalUserId",
-                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36",
-                  "uuid": "bb54acd5-6447-410a-a7f8-fac3f81a180a"
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
                 },
                 {
                   "key": "page",
-                  "value": "1",
-                  "uuid": "c67b87e8-27c2-471f-8c62-01666875513b"
+                  "value": "1"
                 },
                 {
                   "key": "rows",
-                  "value": "100",
-                  "uuid": "e050bf67-8af3-4dfe-893a-c4fcea807fbc"
+                  "value": "100"
                 },
                 {
                   "key": "statementId",
-                  "value": "NO_POSTED",
-                  "uuid": "656ebcf1-b680-491e-80c6-9f141c8b5abb"
+                  "value": "NO_POSTED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "card-statements-detail-v2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/card/v2/statements/detail?externalUserId=68c80b21-ffde-4d02-afa0-6765afc48e36&page=1&rows=100&statementId=NO_POSTED&cardId=4801387990654459905",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v2",
+                "statements",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "rows",
+                  "value": "100"
+                },
+                {
+                  "key": "statementId",
+                  "value": "NO_POSTED"
+                },
+                {
+                  "key": "cardId",
+                  "value": "4801387990654459905",
+                  "type": "text"
+                },
+                {
+                  "key": "",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
                 }
               ]
             }
@@ -1021,7 +1237,6 @@
         },
         {
           "name": "fiat-transcations",
-          "id": "56280d4f-e2a4-4b7d-97b9-cd41a17a7b0e",
           "request": {
             "method": "GET",
             "header": [],
@@ -1039,18 +1254,15 @@
               "query": [
                 {
                   "key": "externalUserId",
-                  "value": "a38d2305-0c7e-46f9-b14a-93e6598230b5",
-                  "uuid": "c14dd778-396e-48f1-83c5-c33cac6a8c2f"
+                  "value": "a38d2305-0c7e-46f9-b14a-93e6598230b5"
                 },
                 {
                   "key": "page",
-                  "value": "1",
-                  "uuid": "f4d8d668-82af-4b94-bd82-67d3844195d9"
+                  "value": "1"
                 },
                 {
                   "key": "rows",
-                  "value": "50",
-                  "uuid": "5bd91438-1dff-433a-8c09-36853dd6f6a7"
+                  "value": "50"
                 }
               ]
             }
@@ -1059,7 +1271,6 @@
         },
         {
           "name": "physical-shipping-info",
-          "id": "a0713c7c-10bb-4429-ac8e-3ebb76e5fa06",
           "request": {
             "method": "GET",
             "header": [],
@@ -1076,28 +1287,54 @@
               "query": [
                 {
                   "key": "externalUserId",
-                  "value": "b85791a1-a518-4e44-b7f5-d5e01ec6ffed",
-                  "uuid": "3a8e9c67-235d-430a-a99d-f6d61b18fbad"
+                  "value": "b85791a1-a518-4e44-b7f5-d5e01ec6ffed"
                 },
                 {
                   "key": "cardMantissa",
-                  "value": "3596",
-                  "uuid": "2f8a2a19-d0be-4695-ab72-f5fe915ad1c9"
+                  "value": "3596"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "physical-shipping-info-v2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/card/v2/physical-shipping-info?externalUserId=b85791a1-a518-4e44-b7f5-d5e01ec6ffed&cardId=4801387990654459905",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v2",
+                "physical-shipping-info"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "b85791a1-a518-4e44-b7f5-d5e01ec6ffed"
+                },
+                {
+                  "key": "cardId",
+                  "value": "4801387990654459905",
+                  "type": "text"
                 }
               ]
             }
           },
           "response": []
         }
-      ],
-      "id": "bc349b10-6d95-457f-a933-9a3266021a9e"
+      ]
     },
     {
       "name": "wallet",
       "item": [
         {
           "name": "coin-list(废弃)",
-          "id": "136aba6a-4b55-4234-9ca9-6e7b94297eaf",
           "request": {
             "method": "GET",
             "header": [
@@ -1144,7 +1381,6 @@
         },
         {
           "name": "deposit-address-v1（废弃）",
-          "id": "229779ff-9b3b-4c59-be72-66d1cde2b84d",
           "request": {
             "method": "GET",
             "header": [
@@ -1199,7 +1435,6 @@
         },
         {
           "name": "deposit-address-v2",
-          "id": "a0d2d8f6-188e-4e35-8107-64bc50e41967",
           "request": {
             "method": "GET",
             "header": [
@@ -1237,33 +1472,28 @@
               "query": [
                 {
                   "key": "network",
-                  "value": "TRON",
-                  "uuid": "932b7e7a-50cb-425a-91d7-27f5834b313b"
+                  "value": "TRON"
                 },
                 {
                   "key": "coin",
-                  "value": "USDC",
-                  "uuid": "e80a9143-4110-4097-8a26-a4f6e2b53c85"
+                  "value": "USDC"
                 },
                 {
                   "key": "externalUserId",
-                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36",
-                  "uuid": "f7412b73-30d9-4cc1-90ea-319f7e48b777"
+                  "value": "68c80b21-ffde-4d02-afa0-6765afc48e36"
                 }
               ]
             }
           },
           "response": []
         }
-      ],
-      "id": "0a8fe581-4634-4f4b-8b34-a9b5362e3ebb"
+      ]
     },
     {
       "name": "Asset",
       "item": [
         {
           "name": "user-balance",
-          "id": "79b798a1-3dc5-4256-affb-ee3d2245d127",
           "request": {
             "method": "GET",
             "header": [
@@ -1310,7 +1540,6 @@
         },
         {
           "name": "transactions",
-          "id": "5fe850fa-0949-44fd-b91d-70a5bed1a6e2",
           "request": {
             "method": "POST",
             "header": [
@@ -1366,7 +1595,6 @@
         },
         {
           "name": "transaction-detail",
-          "id": "62962e6b-e122-4bb3-aa45-a9152a99c170",
           "request": {
             "method": "POST",
             "header": [
@@ -1416,7 +1644,6 @@
         },
         {
           "name": "asset-credit(废弃)",
-          "id": "df6ef4bf-2618-4807-9d3b-276defc80949",
           "request": {
             "method": "POST",
             "header": [
@@ -1466,7 +1693,6 @@
         },
         {
           "name": "asset-debit(废弃)",
-          "id": "91e311d8-b139-43fb-b485-c19e830ef2b8",
           "request": {
             "method": "POST",
             "header": [
@@ -1516,7 +1742,6 @@
         },
         {
           "name": "transfer-query(废弃)",
-          "id": "83ec3259-2489-45a7-82f5-8ff04629b551",
           "request": {
             "method": "GET",
             "header": [
@@ -1561,8 +1786,7 @@
           },
           "response": []
         }
-      ],
-      "id": "3a58ce73-bb6f-44f3-b56b-e11cfeacf5a9"
+      ]
     },
     {
       "name": "websocket",
@@ -1598,7 +1822,6 @@
               }
             }
           ],
-          "id": "2b0ccd0b-dcad-4672-8e50-8d9b22dee35d",
           "request": {
             "method": "GET",
             "header": [
@@ -1674,7 +1897,6 @@
               }
             }
           ],
-          "id": "1721627c-3fc1-4be2-bbf6-29a9a1f6a6f1",
           "request": {
             "method": "GET",
             "header": [
@@ -1719,15 +1941,13 @@
           },
           "response": []
         }
-      ],
-      "id": "571b4cdd-b746-48d8-b00b-8168a8663f4b"
+      ]
     },
     {
       "name": "qrpay",
       "item": [
         {
           "name": "qrpay/v1/decode",
-          "id": "a9dcccda-0e39-492a-9800-5475ee44ae57",
           "request": {
             "method": "POST",
             "header": [
@@ -1777,7 +1997,6 @@
         },
         {
           "name": "qrpay/v1/create",
-          "id": "0cb24767-0dba-45b7-bdf1-c5e7ff603c57",
           "request": {
             "method": "POST",
             "header": [
@@ -1827,7 +2046,6 @@
         },
         {
           "name": "qrpay/v1/confirm",
-          "id": "dd6df36b-a7aa-4439-b3ab-4019936ecfba",
           "request": {
             "method": "POST",
             "header": [
@@ -1877,7 +2095,6 @@
         },
         {
           "name": "qrpay/v1/order-list",
-          "id": "21864977-ec37-4211-b1cb-20fcc7dbc347",
           "request": {
             "method": "GET",
             "header": [
@@ -1928,7 +2145,6 @@
         },
         {
           "name": "qrpay/v1/order-detail",
-          "id": "857c025c-e3b3-4eea-8ddd-ec4ebc01e46c",
           "request": {
             "method": "GET",
             "header": [
@@ -1977,15 +2193,13 @@
           },
           "response": []
         }
-      ],
-      "id": "666ac075-33b9-4736-8bb9-e38130a08729"
+      ]
     },
     {
       "name": "financial-connection",
       "item": [
         {
           "name": "create-user",
-          "id": "57c6af86-b600-4f7f-bf9d-3812d9d6add7",
           "request": {
             "method": "POST",
             "header": [],
@@ -2014,7 +2228,6 @@
         },
         {
           "name": "query-user-info",
-          "id": "fbbcbb58-9d7f-4792-b1cb-d34c3b71c912",
           "request": {
             "method": "GET",
             "header": [],
@@ -2046,7 +2259,6 @@
         },
         {
           "name": "virtual-card-apply",
-          "id": "d87a8deb-5bc2-414c-8ac8-a4ec8c5b6553",
           "request": {
             "method": "POST",
             "header": [],
@@ -2076,7 +2288,6 @@
         },
         {
           "name": "virtual-card-detail",
-          "id": "e2395989-5c8a-4577-8185-ec46d1c01d56",
           "request": {
             "method": "GET",
             "header": [],
@@ -2105,8 +2316,7 @@
                 {
                   "key": "applyRef",
                   "value": "test10",
-                  "type": "text",
-                  "uuid": "165e6f4b-3ef6-4f8d-a556-3ef139790c5c"
+                  "type": "text"
                 }
               ]
             }
@@ -2115,7 +2325,6 @@
         },
         {
           "name": "payment",
-          "id": "cd40cd09-1871-4078-bd33-52b99c0667e8",
           "request": {
             "method": "POST",
             "header": [],
@@ -2144,7 +2353,6 @@
         },
         {
           "name": "query-payment-info",
-          "id": "97083591-c8d1-4709-aa1a-a5896b3db7f9",
           "request": {
             "method": "GET",
             "header": [],
@@ -2170,7 +2378,6 @@
         },
         {
           "name": "transfer-to-spending",
-          "id": "844fb392-326a-4223-b452-c918e5c5c916",
           "request": {
             "method": "POST",
             "header": [],
@@ -2199,7 +2406,6 @@
         },
         {
           "name": "query-transfer-info",
-          "id": "8397c92e-2220-45a5-864b-7fe4de8245c2",
           "request": {
             "method": "GET",
             "header": [],
@@ -2225,7 +2431,6 @@
         },
         {
           "name": "withdraw",
-          "id": "d06efda8-6b8a-463a-b615-96990e284066",
           "request": {
             "method": "POST",
             "header": [],
@@ -2254,7 +2459,6 @@
         },
         {
           "name": "query-withdrawal-info",
-          "id": "2831bc48-9957-4a9d-b7ba-107afab5e015",
           "request": {
             "method": "GET",
             "header": [],
@@ -2280,7 +2484,6 @@
         },
         {
           "name": "query-tran-list",
-          "id": "75c75193-98ec-43fd-a3e0-91b264b21081",
           "request": {
             "method": "POST",
             "header": [],
@@ -2307,15 +2510,130 @@
           },
           "response": []
         }
-      ],
-      "id": "84433a9b-e4c4-4f4a-a82e-6ce67adde7ef"
+      ]
+    },
+    {
+      "name": "digitalWallet",
+      "item": [
+        {
+          "name": "apple-bind-wallet",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"cardMantissa\": \"1234\",\n    \"appleNonce\": \"\",\n    \"applePublicCertificates\": [],\n    \"appleNonceSignature\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/card/v1/apple-bind-wallet",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v1",
+                "apple-bind-wallet"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "apple-bind-wallet-v2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"cardId\": \"4801387990654459905\",\n    \"appleNonce\": \"\",\n    \"applePublicCertificates\": [],\n    \"appleNonceSignature\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/card/v2/apple-bind-wallet",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v2",
+                "apple-bind-wallet"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "google-bind-wallet",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"cardMantissa\": \"1234\",\n    \"clientCustomerId\": \"\",\n    \"deviceId\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/card/v1/google-bind-wallet",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v1",
+                "google-bind-wallet"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "google-bind-wallet-v2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"fafb3568-ac65-4b05-ae5f-c0d32dcdc6d3\",\n    \"cardId\": \"4801387990654459905\",\n    \"clientCustomerId\": \"\",\n    \"deviceId\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/card/v2/google-bind-wallet",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "card",
+                "v2",
+                "google-bind-wallet"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
       "name": "simulation",
       "item": [
         {
           "name": "fund-auth",
-          "id": "79a77def-96b7-4736-9330-e4f37917881c",
           "request": {
             "method": "POST",
             "header": [],
@@ -2341,16 +2659,42 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "fund-auth-v2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"externalUserId\": \"442e0a33-0a31-40b5-ae64-7b9d562faa1f\",\n    \"cardId\": \"4801387990654459905\",\n    \"authType\": \"EXPEND\",\n    \"amount\": \"10.5\",\n    \"currency\": \"USD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/simulation/v2/fund-auth",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "simulation",
+                "v2",
+                "fund-auth"
+              ]
+            }
+          },
+          "response": []
         }
-      ],
-      "id": "6e91a4e5-9594-41f0-9363-e1be2ffe807a"
+      ]
     }
   ],
   "event": [
     {
       "listen": "prerequest",
       "script": {
-        "id": "9843eaa1-98df-4f49-9a6a-c07b5832bb70",
         "type": "text/javascript",
         "packages": {},
         "requests": {},
@@ -2474,7 +2818,6 @@
     {
       "listen": "test",
       "script": {
-        "id": "692af6da-893c-48eb-b940-e4bd18d127a2",
         "type": "text/javascript",
         "packages": {},
         "requests": {},
