@@ -1,0 +1,3297 @@
+{
+  "info": {
+    "_postman_id": "afdd97f6-13ff-48c9-aabf-e3ac2c79eea8",
+    "name": "Crypto-Payment OpenAPI",
+    "description": "Crypto-Payment service OpenAPI collection. Base URL: http://{{host}}:8079/crypto-payment\n\nAuthentication: HMAC-based signature. Headers required: appId, timestamp, sign (HMAC-SHA256 of request body with secretKey).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "639439"
+  },
+  "item": [
+    {
+      "name": "PayIn",
+      "item": [
+        {
+          "name": "Create Payment发起支付",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}",
+                "description": "Application ID"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}",
+                "description": "Request timestamp (milliseconds)"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}",
+                "description": "HMAC-SHA256 signature"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"mchTxnId\": \"\",\n    \"txnAmount\": \"1.12\",\n    \"currency\": \"SGD\",\n    \"payMethod2\": \"base\",\n    \"paymentCurrency\": \"USDT\",\n    \"checkoutMode\": \"MERCHANT\",\n    \"notificationUrl\": \"https://172.31.2.86:5000\",\n    \"successReturnUrl\": \"https://paydify.com/en/docs/create-payment\",\n    \"failReturnUrl\": \"https://www.deepseek.com/\",\n    \"pendingReturnUrl\": \"https://www.baidu.com/\",\n    \"txnTitle\": \"Test Payment\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payin/v1/createPayment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payin",
+                "v1",
+                "createPayment"
+              ]
+            },
+            "description": "Create a new payment order.\n\n**Required fields:**\n- `mchTxnId` (string, max 60) - Merchant transaction ID\n- `txnAmount` (string, max 20) - Transaction amount, up to 2 decimal places\n- `currency` (string, max 8) - Currency code (e.g. SGD, USD)\n- `checkoutMode` (enum) - CRYPTO_WALLET | FIAT | DIRECT_CRYPTO | DIRECT_FIAT\n- `notificationUrl` (string, max 300) - Payment result notification URL\n\n**Optional fields:**\n- `payMethod1`, `payMethod2` (string, max 20) - Payment methods\n- `successReturnUrl`, `failReturnUrl`, `pendingReturnUrl` (string, max 300)\n- `source` (string, max 20)\n- `txnTitle` (string, max 30), `txnDesc` (string, max 60)\n- `accountInfo.toAddress` - Merchant receiving address\n- `payerInfo.uid` - User ID\n- `mchExtInfo` (string, max 512) - Merchant extension info\n- `lifetime` (long) - Order lifetime in milliseconds\n- `paymentPurpose`, `merchantInNote`\n- `paymentCurrency` (string, max 10) - Payment currency for fiat orders (USDT/USDC)\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"msg\": \"success\",\n  \"data\": {\n    \"txnId\": \"TXN001\",\n    \"mchTxnId\": \"MCH_123\",\n    \"httplink\": \"https://pay.paydify.com/checkout/xxx\",\n    \"deeplink\": \"paydify://pay/xxx\",\n    \"qrCode\": \"xxx\",\n    \"state\": \"PENDING\",\n    \"errorMsg\": null\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Payment Status查询支付状态",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"txnId\": \"P5036649584543012353\",\n  \"mchTxnId\": \"DCS20260507150148SUHA\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payin/v1/getPaymentStatus",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payin",
+                "v1",
+                "getPaymentStatus"
+              ]
+            },
+            "description": "Query payment order status. Supports batch query by comma-separated txnId.\n\n**Fields (at least one required):**\n- `txnId` (string, max 500) - Paydify transaction ID, supports comma-separated for batch query\n- `mchTxnId` (string, max 100) - Merchant transaction ID\n\n**Response:** List of payment status objects\n```json\n{\n  \"code\": \"200\",\n  \"data\": [{\n    \"txnId\": \"TXN001\",\n    \"mchTxnId\": \"MCH_123\",\n    \"txnHash\": \"0x...\",\n    \"txnAmount\": \"100.00\",\n    \"paidAmount\": \"100.00\",\n    \"mchReceivedAmount\": \"99.50\",\n    \"mchFee\": \"0.50\",\n    \"mchFeeRate\": \"0.5\",\n    \"currency\": \"SGD\",\n    \"gasFee\": \"1.00\",\n    \"gasFeeCurrency\": \"USDT\",\n    \"payMethod1\": \"CRYPTO\",\n    \"payMethod2\": \"USDT\",\n    \"appId\": \"APP001\",\n    \"state\": \"SUCCESS\",\n    \"refundType\": null,\n    \"failType\": null,\n    \"mchExtInfo\": \"\",\n    \"errorMsg\": null,\n    \"envType\": \"TEST\",\n    \"fromAddress\": \"0x...\",\n    \"checkoutMode\": \"CRYPTO_WALLET\",\n    \"paidTime\": \"2025-01-01T12:00:00\",\n    \"failedTime\": null,\n    \"expiredTime\": null,\n    \"createdTime\": \"2025-01-01T11:55:00\",\n    \"successReturnUrl\": \"https://...\",\n    \"failReturnUrl\": \"https://...\",\n    \"pendingReturnUrl\": \"https://...\",\n    \"channelTxnId\": \"CH001\",\n    \"orderCurrency\": \"SGD\",\n    \"settlementCurrency\": \"USDT\"\n  }]\n}\n```\n\n**state values:** PENDING, PROCESSING, SUCCESS, FAILED, EXPIRED, CANCELLED\n**refundType values:** NONE, PARTIAL, FULL\n**failType values:** TIMEOUT, INSUFFICIENT_BALANCE, USER_CANCELLED, etc."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Refund发起退款",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mchTxnId\": \"MCH_123\",\n  \"paymentTxnId\": \"TXN001\",\n  \"type\": \"platform\",\n  \"refundAmount\": \"50.00\",\n  \"txnHash\": \"\",\n  \"mchExtInfo\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payin/v1/createRefund",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payin",
+                "v1",
+                "createRefund"
+              ]
+            },
+            "description": "Create a refund request.\n\n**Required fields:**\n- `mchTxnId` (string, max 60) - Merchant transaction ID\n- `paymentTxnId` (string, max 30) - Original payment transaction ID\n- `type` (enum) - Refund responsibility: `merchant` (on-chain refund, requires txnHash) | `platform` (API/custodial wallet refund, requires refundAmount)\n\n**Conditional fields:**\n- `refundAmount` (string, max 32) - Required for platform refunds (Gate.io); optional for on-chain refunds\n- `txnHash` (string, max 120) - Required for on-chain refunds (BGW); not needed for Gate.io refunds\n\n**Optional:**\n- `mchExtInfo` (string, max 512)\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"refundTxnId\": \"RF001\",\n    \"paymentTxnId\": \"TXN001\",\n    \"mchTxnId\": \"MCH_123\",\n    \"state\": \"INIT\",\n    \"errorMsg\": null\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Refund Status查询退款状态",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "const url = pm.request.url.getPath(); ",
+                  "if (url.includes('/createPayment')) { ",
+                  "jsonData.mchTxnId=generateOrderId();",
+                  "}",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refundTxnId\": \"R4961477262237756161\",\n  \"mchTxnId\": \"\",\n  \"paymentTxnId\": \"P4951341828979603201\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payin/v1/getRefundStatus",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payin",
+                "v1",
+                "getRefundStatus"
+              ]
+            },
+            "description": "Query refund status. At least one of refundTxnId, mchTxnId, or paymentTxnId should be provided.\n\n**Fields (at least one required):**\n- `refundTxnId` - Refund transaction ID\n- `mchTxnId` - Merchant transaction ID\n- `paymentTxnId` - Payment transaction ID\n\n**Response:** List of refund status objects\n```json\n{\n  \"code\": \"200\",\n  \"data\": [{\n    \"refundTxnId\": \"RF001\",\n    \"txnHash\": \"0x...\",\n    \"paymentTxnId\": \"TXN001\",\n    \"txnAmount\": \"50.00\",\n    \"currency\": \"SGD\",\n    \"payMethod1\": \"CRYPTO\",\n    \"payMethod2\": \"USDT\",\n    \"mchTxnId\": \"MCH_123\",\n    \"appId\": \"APP001\",\n    \"envType\": \"TEST\",\n    \"mchExtInfo\": \"\",\n    \"errorMsg\": null,\n    \"state\": \"refunded\",\n    \"refundedTime\": \"2025-01-02T10:00:00\",\n    \"createdTime\": \"2025-01-02T09:50:00\",\n    \"updatedTime\": \"2025-01-02T10:00:00\"\n  }]\n}\n```\n\n**state values:** init, pending, refunded, failed"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Settlement Files获取结算文件",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"settlementDate\": \"2025-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payin/v1/getSettlementFiles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payin",
+                "v1",
+                "getSettlementFiles"
+              ]
+            },
+            "description": "Get settlement files for a given date (T+1 settlement).\n\n**Required fields:**\n- `settlementDate` (date, format: yyyy-MM-dd) - Settlement date\n\n**Response:** List of settlement file objects\n```json\n{\n  \"code\": \"200\",\n  \"data\": [{\n    \"batchId\": \"BAT001\",\n    \"appId\": \"APP001\",\n    \"merchantId\": \"MID001\",\n    \"merchantName\": \"Test Merchant\",\n    \"settlementDate\": \"2025-01-15\",\n    \"summaryFileUrl\": \"https://...\",\n    \"summaryFileName\": \"summary_20250115.csv\",\n    \"detailFileUrl\": \"https://...\",\n    \"detailFileName\": \"detail_20250115.csv\"\n  }]\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Trial (Get Quote)法币/稳定币汇率查询",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromCurrency\": \"SGD\",\n  \"toCurrency\": \"USDT\",\n  \"amount\": \"100.00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payin/v1/trial",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payin",
+                "v1",
+                "trial"
+              ]
+            },
+            "description": "Get a quote for fiat/stablecoin conversion. Supports both directions:\n- Fiat -> Stablecoin (e.g., SGD -> USDT)\n- Stablecoin -> Fiat (e.g., USDT -> SGD)\n\n**Required fields:**\n- `fromCurrency` (string) - Source currency (e.g. SGD, USD, USDT, USDC)\n- `toCurrency` (string) - Target currency (e.g. USDT, USDC, SGD, USD)\n- `amount` (string) - Amount in source currency\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"fromCurrency\": \"SGD\",\n    \"toCurrency\": \"USDT\",\n    \"fromAmount\": \"100.00\",\n    \"toAmount\": \"74.1234\",\n    \"precision\": 4,\n    \"roundingMode\": \"CEIL\"\n  }\n}\n```\n\n**precision:** 4 for stablecoin (fiat->stablecoin), 2 for fiat (stablecoin->fiat)\n**roundingMode:** CEIL for stablecoin, FLOOR for fiat"
+          },
+          "response": []
+        }
+      ],
+      "description": "PayIn API - Merchant payment collection接口"
+    },
+    {
+      "name": "QR Pay",
+      "item": [
+        {
+          "name": "Scan Pay (QR Parse)扫码解析",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const qrpaySignDecard = pm.require('qrpay_sign_decard');",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {
+                  "qrpay_sign_decard": {
+                    "id": "019c0da0-4437-7c38-9bfe-f086bbcc219d"
+                  }
+                },
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "clientId",
+                "value": "{{clientId}}",
+                "description": "Client ID"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"clientId\":\"1\",\"clientType\":\"C\",\"codeValue\":\"00020101021238600010A00000072701300006970407011697040601298372940208QRIBFTTA53037045802VN630491B3\",\"customerId\":\"8b312d07-30da-46b7-a639-f969fac3f281\",\"clientIP\":\"18.141.128.132\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/qr/v1/scanpay",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "qr",
+                "v1",
+                "scanpay"
+              ]
+            },
+            "description": "Scan and parse a QR code.\n\n**Required fields:**\n- `codeValue` - QR code information\n- `customerId` - Customer ID\n- `clientIP` - Client IP address\n\n**Optional fields:**\n- `clientId`, `clientType` - Authentication (can also be in header)\n- `currency` - Currency code\n- `amount` - Amount (positive, max 6 decimal places)\n- `custName`, `custFirstName`, `custLastName` - Customer name\n- `custNationCode` - Customer country code\n- `legalNationCode` - ID document country code\n- `legalId` - ID number\n- `legalType` - ID type (ID | PP)\n- `mobile` - Mobile (international format, e.g. +5491234567890)\n- `email` - Email address\n- `gender` - MALE | FEMALE\n- `dataCryptoIV`, `qrType`, `isKycUser`\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"txnId\": \"TXN001\",\n    \"qrCode\": \"PROMPT_PAY\",\n    \"needCashier\": \"Y\",\n    \"cashierSuppInfos\": [],\n    \"cashierExtInfo\": \"\",\n    \"acqCurrency\": \"PHP\",\n    \"acqAmount\": \"100.50\",\n    \"payCurrency\": \"USDT\",\n    \"payAmount\": \"1.80\",\n    \"payeeInfo\": \"\",\n    \"payeeInfoDetail\": {\n      \"merchantId\": \"M001\",\n      \"merchantName\": \"Test Merchant\",\n      \"mobilePhone\": \"\",\n      \"bankCode\": \"\",\n      \"bankName\": \"\",\n      \"bankAccount\": \"\",\n      \"bankAccountName\": \"\"\n    },\n    \"goodInfo\": \"\",\n    \"remark\": \"\",\n    \"expiryTime\": \"2025-01-01T12:10:00\",\n    \"promoInfo\": [],\n    \"rateInfo\": {\n      \"baseCurrency\": \"USDT\",\n      \"quoteCurrency\": \"PHP\",\n      \"rate\": 55.80\n    },\n    \"redirectUrl\": \"\",\n    \"extInfo\": \"\",\n    \"sdkActionType\": \"\",\n    \"sdkActionPayload\": \"\",\n    \"usdAmount\": \"1.80\",\n    \"minAmount\": \"1.00\",\n    \"maxAmount\": \"5000.00\",\n    \"toChainInfo\": [\n      { \"toChain\": \"TRON\", \"toChainAddress\": \"T...\" }\n    ],\n    \"remainingAmount\": \"5000.00\",\n    \"maxSingleAmount\": \"1000.00\",\n    \"feeAmount\": \"0.50\",\n    \"payQuotes\": [\n      { \"payCurrency\": \"USDT\", \"payAmount\": \"1.80\", \"indicativeRate\": \"55.80\" }\n    ]\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Pay创建支付订单",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const qrpaySignDecard = pm.require('qrpay_sign_decard');"
+                ],
+                "type": "text/javascript",
+                "packages": {
+                  "qrpay_sign_decard": {
+                    "id": "019c0da0-4437-7c38-9bfe-f086bbcc219d"
+                  }
+                },
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "clientId",
+                "value": "{{clientId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"clientId\":\"1\",\"clientType\":\"C\",\"codeValue\":\"00020101021238600010A00000072701300006970407011697040601298372940208QRIBFTTA53037045802VN630491B3\",\"customerId\":\"8b312d07-30da-46b7-a639-f969fac3f281\",\"currency\":\"VND\",\"amount\":\"350000\",\"custName\":\"Daniel Wright\",\"custNationCode\":\"HK\",\"clientIP\":\"192.168.1.1\",\"extInfo\":\"\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/qr/v1/createpay",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "qr",
+                "v1",
+                "createpay"
+              ]
+            },
+            "description": "Create a QR payment order. Same as ScanPay but with additional `txnId` field.\n\n**Required fields:** same as ScanPay\n- `codeValue`, `customerId`, `clientIP`\n\n**Additional field:**\n- `txnId` - Transaction ID (from scanpay response)\n\n**Response:** Same structure as ScanPay response."
+          },
+          "response": []
+        },
+        {
+          "name": "Pay Notify支付结果通知",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const qrpaySignDecard = pm.require('qrpay_sign_decard');"
+                ],
+                "type": "text/javascript",
+                "packages": {
+                  "qrpay_sign_decard": {
+                    "id": "019c0da0-4437-7c38-9bfe-f086bbcc219d"
+                  }
+                },
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "clientId",
+                "value": "{{clientId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"txnId\":\"5007929159188517888\",\"partnerPaymentId\":\"500792915918851788800001\",\"payCurrency\":\"SGD\",\"payAmount\":\"231.68\",\"payTime\":\"1760344762000\",\"extInfo\":\"\",\"payTxnHash\":\"3EqXKgJXqBftbktSHyJjxY9ifKGX4Mh3Cbj2KfKXAcTVCyJhrynK4QeAbs9WNVgE6RxpDRUfsQY9nSi85hQWqfge\",\"payChain\":\"SOL\",\"backChain\":\"ETH\",\"backChainAddress\":\"0x4fa08f25cdf55969e04a53382ea9521902c28168\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/qr/v1/paynotify",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "qr",
+                "v1",
+                "paynotify"
+              ]
+            },
+            "description": "Payment result notification callback.\n\n**Required fields:**\n- `txnId` - Paydify transaction ID\n\n**Optional fields:**\n- `clientId`, `signature`, `timestamp`, `clientType` - Authentication\n- `partnerPaymentId` - Payment order number\n- `payCurrency`, `payAmount` - Payment currency and amount\n- `payTime` - Payment time\n- `payState` - Payment state (WalletPayStateEnum)\n- `failType` - Failure type (QrPayFailTypeEnum)\n- `extInfo` - Extension info\n- `payChain`, `payTxnHash` - Payment chain and transaction hash\n- `backChain`, `backChainAddress` - Refund chain info\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"txnId\": \"TXN001\",\n    \"partnerPaymentId\": \"PAY_001\",\n    \"orderState\": \"S\",\n    \"extInfo\": \"\",\n    \"failReson\": null,\n    \"backTxnHash\": null\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Order Query查询订单状态",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const qrpaySignDecard = pm.require('qrpay_sign_decard');"
+                ],
+                "type": "text/javascript",
+                "packages": {
+                  "qrpay_sign_decard": {
+                    "id": "019c0da0-4437-7c38-9bfe-f086bbcc219d"
+                  }
+                },
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "clientId",
+                "value": "{{clientId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"txnId\":\"5007929159188517888\",\"extInfo\":\"\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/qr/v1/order/query",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "qr",
+                "v1",
+                "order",
+                "query"
+              ]
+            },
+            "description": "Query QR payment order status.\n\n**Required fields:**\n- `txnId` - Paydify transaction ID\n\n**Optional:**\n- `clientId`, `signature`, `timestamp`, `clientType` - Authentication\n- `extInfo` - Extension info\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"txnId\": \"TXN001\",\n    \"partnerPaymentId\": \"PAY_001\",\n    \"payCurrency\": \"USDT\",\n    \"payAmount\": \"1.80\",\n    \"orderState\": \"S\",\n    \"extInfo\": \"\",\n    \"usdAmount\": \"1.80\",\n    \"failReson\": null,\n    \"backTxnHash\": null\n  }\n}\n```\n\n**orderState:** S=Success, F=Failed, P=Processing"
+          },
+          "response": []
+        },
+        {
+          "name": "QR Code Query查询支持二维码列表",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const qrpaySignDecard = pm.require('qrpay_sign_decard');"
+                ],
+                "type": "text/javascript",
+                "packages": {
+                  "qrpay_sign_decard": {
+                    "id": "019c0da0-4437-7c38-9bfe-f086bbcc219d"
+                  }
+                },
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "clientId",
+                "value": "{{clientId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"clientId\":2,\"signature\":\"\",\"timestamp\":\"\",\"region\":\"PH\",\"extInfo\":\"\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/qr/v1/qrcode/query",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "qr",
+                "v1",
+                "qrcode",
+                "query"
+              ]
+            },
+            "description": "Query supported QR code types for a region.\n\n**Required fields:**\n- `region` - Region/country code (e.g. PH, VN)\n\n**Optional:**\n- `clientId`, `signature`, `timestamp` - Authentication\n- `extInfo` - Extension info\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"qrCodes\": [\n      {\n        \"qrCode\": \"PROMPT_PAY\",\n        \"logUrl\": \"https://...\",\n        \"qrName\": \"PromptPay\",\n        \"nations\": [\n          { \"nationCode\": \"PH\", \"logoUrl\": \"https://...\" }\n        ]\n      }\n    ],\n    \"extInfo\": \"\"\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Payment Code (Merchant Scan)获取支付码（被扫）",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const qrpaySignDecard = pm.require('qrpay_sign_decard');"
+                ],
+                "type": "text/javascript",
+                "packages": {
+                  "qrpay_sign_decard": {
+                    "id": "019c0da0-4437-7c38-9bfe-f086bbcc219d"
+                  }
+                },
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "clientId",
+                "value": "{{clientId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"qrCodeType\":\"A+_UPM_QR\",\"customerId\":\"10147868\",\"paymentCodeRegion\":\"cn\",\"region\":\"SG\",\"codeQuantity\":\"1\",\"deviceTokenId\":\"PAYOUT\",\"clientIP\":\"192.168.1.1\",\"extInfo\":\"extInfoPAYOUT\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/qr/v1/getpaymentcode",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "qr",
+                "v1",
+                "getpaymentcode"
+              ]
+            },
+            "description": "Get payment code for merchant-presented QR (merchant scans customer's QR).\n\n**Required fields:**\n- `qrCodeType` - QR code type\n- `customerId` - Customer ID\n- `region` - Region/country code\n- `deviceTokenId` - Device token ID\n- `clientIP` - Client IP\n- `codeQuantity` - Number of codes (1-10)\n\n**Optional:**\n- `clientId`, `clientType` - Authentication\n- `extInfo` - Extension info\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"paymentCodes\": [\n      {\n        \"paymentCode\": \"1234567890\",\n        \"codeEffectiveTime\": \"1704067200000\",\n        \"codeExpiryTime\": \"1704067260000\"\n      }\n    ],\n    \"extInfo\": \"\"\n  }\n}\n```"
+          },
+          "response": []
+        }
+      ],
+      "description": "QR Code Payment API - 扫码支付接口"
+    },
+    {
+      "name": "Payout",
+      "item": [
+        {
+          "name": "Batch Payout Apply批量提现申请",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"mchBatchId\":\"BATCH_001\",\"batchName\":\"Monthly Payout Batch\",\"currency\":\"USDT\",\"totalAmount\":150,\"totalCount\":2,\"transferDetailList\":[{\"mchDetailId\":\"DET_001\",\"transferAmount\":100,\"network\":\"TRON\",\"address\":\"TYourTronAddress\",\"remark\":\"Salary payment\"},{\"mchDetailId\":\"DET_002\",\"transferAmount\":50,\"network\":\"BSC\",\"address\":\"0xYourBscAddress...\",\"remark\":\"Commission payment\"}]}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/batch/apply",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "batch",
+                "apply"
+              ]
+            },
+            "description": "Apply for a batch payout (1-500 transfers per batch).\n\n**Required fields:**\n- `mchBatchId` (string) - Merchant batch ID (idempotency key)\n- `batchName` (string) - Batch name\n- `currency` (string) - Currency (e.g. USDT)\n- `totalAmount` (BigDecimal) - Total amount\n- `totalCount` (Integer) - Total transfer count\n- `transferDetailList` (List, 1-500 items) - Transfer details\n  - `mchDetailId` (string) - Detail ID\n  - `transferAmount` (BigDecimal) - Transfer amount\n  - `network` (string) - Network: BSC | SOL | ETH | TRON | POLYGON\n  - `address` (string) - Destination address\n  - `remark` (string, optional) - Remark\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"batchId\": \"BAT001\",\n    \"mchBatchId\": \"BATCH_123\",\n    \"status\": \"INIT\"\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Batch Payout Query批量提现查询",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"batchId\": \"5036691495018436097\",\n  \"mchBatchId\": \"BATCH_123\",\n  \"detailStatus\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/batch/query",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "batch",
+                "query"
+              ]
+            },
+            "description": "Query batch payout status.\n\n**Fields (at least one of batchId/mchBatchId):**\n- `batchId` - Paydify batch ID\n- `mchBatchId` - Merchant batch ID\n- `detailStatus` - Filter by detail status: INIT | PROCESSING | SUCCESS | FAILED\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"batchId\": \"BAT001\",\n    \"mchBatchId\": \"BATCH_123\",\n    \"batchName\": \"Monthly Payout\",\n    \"status\": \"PROCESSING\",\n    \"currency\": \"USDT\",\n    \"totalAmount\": \"150.00\",\n    \"totalCount\": 2,\n    \"successCount\": 1,\n    \"failedCount\": 0,\n    \"successAmount\": \"100.00\",\n    \"failedAmount\": \"0.00\",\n    \"createTime\": \"2025-01-01T10:00:00\",\n    \"finishTime\": null,\n    \"transferDetailList\": [\n      {\n        \"detailId\": \"DET001\",\n        \"mchDetailId\": \"DET_001\",\n        \"status\": \"SUCCESS\",\n        \"transferAmount\": \"100.00\",\n        \"mchFee\": \"1.50\",\n        \"network\": \"TRON\",\n        \"address\": \"T...\",\n        \"txnHash\": \"0x...\",\n        \"remark\": \"Salary\",\n        \"errorCode\": null,\n        \"errorMsg\": null,\n        \"finishTime\": \"2025-01-01T10:05:00\"\n      }\n    ]\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Withdraw Apply提现申请",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mchWithdrawId\": \"WD_0001\",\n  \"amount\": \"0.1\",\n  \"currency\": \"USDT\",\n  \"network\": \"TRON\",\n  \"address\": \"TLNqiRj2MBSiWQaJrUm2tfDZsNMb3aXwPm\",\n  \"memo\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/withdraw/apply",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "withdraw",
+                "apply"
+              ]
+            },
+            "description": "Apply for a single withdrawal.\n\n**Required fields:**\n- `mchWithdrawId` (string, max 60) - Merchant withdrawal ID (idempotency key)\n- `amount` (string) - Withdrawal amount\n- `currency` (string, max 8) - Currency code\n- `network` (string, max 10) - Network: BSC | SOL | ETH | TRON | POLYGON\n- `address` (string, max 255) - Destination address\n\n**Optional:**\n- `memo` (string, max 128) - Memo/tag for certain chains\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"withdrawId\": \"WD001\"\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Withdraw Detail提现详情查询",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mchWithdrawId\": \"WD_0001\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/withdraw/detail",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "withdraw",
+                "detail"
+              ]
+            },
+            "description": "Query withdrawal detail.\n\n**Required fields:**\n- `mchWithdrawId` - Merchant withdrawal ID\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"withdrawId\": \"WD001\",\n    \"mchWithdrawId\": \"WD_12345\",\n    \"mid\": \"MID001\",\n    \"appId\": \"APP001\",\n    \"currency\": \"USDT\",\n    \"network\": \"TRON\",\n    \"address\": \"T...\",\n    \"txnHash\": \"0x...\",\n    \"status\": \"SUCCESS\",\n    \"amount\": \"100.00\",\n    \"gasFee\": \"1.00\",\n    \"processingFee\": \"0.50\",\n    \"processingFeeRate\": \"0.005\",\n    \"totalDeductedAmount\": \"101.50\",\n    \"memo\": \"\",\n    \"createTime\": \"2025-01-01T10:00:00\",\n    \"finishTime\": \"2025-01-01T10:05:00\",\n    \"errorCode\": null,\n    \"errorMsg\": null\n  }\n}\n```\n\n**status values:** PENDING, PROCESSING, SUCCESS, FAILED"
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet Address Query查询钱包入金地址",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"TRON\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/wallet/address",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "wallet",
+                "address"
+              ]
+            },
+            "description": "Query merchant wallet chain address info.\n\n**Required fields:**\n- `network` (string, max 50) - Blockchain network (TRON, BSC, ETH, SOL, POLYGON)\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"network\": \"TRON\",\n    \"address\": \"TYourDepositAddress...\",\n    \"supportCurrencies\": [\"USDT\", \"USDC\"]\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Wallet Balance Query查询商户钱包余额",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{$timestamp}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"USDT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/wallet/balance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "wallet",
+                "balance"
+              ]
+            },
+            "description": "Query merchant wallet balance.\n\n**Required fields:**\n- `currency` (string, max 10) - Currency code (e.g. USDT, USDC)\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"totalAmount\": \"10000.00\",\n    \"availableAmount\": \"8500.00\",\n    \"frozenAmount\": \"1500.00\",\n    \"currency\": \"USDT\"\n  }\n}\n```"
+          },
+          "response": []
+        }
+      ],
+      "description": "Payout API - 提现/代付接口"
+    },
+    {
+      "name": "Fiat Withdraw",
+      "item": [
+        {
+          "name": "Quote (报价预览)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"quoteMode\": \"ARRIVAL\",\n    \"bankAccountId\": \"FWBA_A62189581_007\",\n    \"arrivalCurrency\": \"USD\",\n    \"arrivalAmount\": \"0.01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/fiat-withdraw/quote",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "fiat-withdraw",
+                "quote"
+              ]
+            },
+            "description": "获取法币提现报价预览（无副作用，不创建订单）。\n\n**报价模式 quoteMode:**\n- `ARRIVAL` — 按到账金额报价，需填 `arrivalAmount`\n- `DEDUCT_ASSET` — 按扣减稳定币金额报价，需填 `assetCode` + `deductAmount`\n\n**必填字段:**\n- `quoteMode` (string) — 报价模式: ARRIVAL | DEDUCT_ASSET\n- `bankAccountId` (string) — 目标银行账户ID\n- `arrivalCurrency` (string) — 到账法币币种 (ISO 4217, 如 USD/EUR/HKD)，必须在商户已签约法币范围内\n\n**模式 ARRIVAL 时必填:**\n- `arrivalAmount` (string) — 到账金额（币种 = arrivalCurrency）\n\n**模式 DEDUCT_ASSET 时必填:**\n- `assetCode` (string) — 扣减稳定币代码 (如 USDC/USDT)\n- `deductAmount` (string) — 扣减金额\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"quoteId\": \"QT_xxx\",\n    \"quoteMode\": \"ARRIVAL\",\n    \"expireAt\": \"2025-01-01T12:05:00\",\n    \"bankAccountId\": \"BA_001\",\n    \"bankAccountInfo\": {\n      \"bankAccountId\": \"BA_001\",\n      \"beneficiaryBankBic\": \"BOFAUS3N\",\n      \"beneficiaryAccountNumber\": \"****6789\",\n      \"beneficiaryAccountName\": \"John Doe\",\n      \"correspondentBankBic\": \"\",\n      \"beneficiaryAddress\": \"\",\n      \"beneficiaryBankName\": \"Bank of America\",\n      \"beneficiaryBankAddress\": \"\",\n      \"beneficiaryCountry\": \"US\"\n    },\n    \"arrivalAmount\": \"1000.00\",\n    \"arrivalCurrency\": \"USD\",\n    \"feeAmountFiat\": \"5.00\",\n    \"chargeAmountFiat\": \"1005.00\",\n    \"lockedRateSnapshot\": \"{\\\"USDC\\\":1.0}\",\n    \"deductionPlan\": [\n      {\n        \"assetCode\": \"USDC\",\n        \"deductAmount\": \"1005.00\",\n        \"principalAmount\": \"1000.00\",\n        \"feeAmount\": \"5.00\",\n        \"sequence\": 1\n      }\n    ]\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Apply (发起提现)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mchOrderId\": \"FW_123335\",\n  \"quoteId\": \"QT5036780145223800321\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/fiat-withdraw/apply",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "fiat-withdraw",
+                "apply"
+              ]
+            },
+            "description": "发起法币提现（幂等键: mchOrderId）。需先调用 Quote 接口获取 quoteId。\n\n**必填字段:**\n- `mchOrderId` (string, max 128) — 商户订单号（幂等键）\n- `quoteId` (string, max 64) — 报价会话ID（来自 Quote 接口返回）\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"withdrawOrderId\": \"FW001\",\n    \"mchOrderId\": \"FW_12345\",\n    \"quoteId\": \"QT_xxx\",\n    \"status\": \"PENDING\",\n    \"arrivalAmount\": \"1000.00\",\n    \"arrivalCurrency\": \"USD\",\n    \"feeAmountFiat\": \"5.00\",\n    \"chargeAmountFiat\": \"1005.00\",\n    \"deductionSnapshot\": {\n      \"deductionPlan\": [\n        {\n          \"assetCode\": \"USDC\",\n          \"deductAmount\": \"1005.00\",\n          \"principalAmount\": \"1000.00\",\n          \"feeAmount\": \"5.00\",\n          \"sequence\": 1\n        }\n      ]\n    },\n    \"bankAccountInfo\": {\n      \"bankAccountId\": \"BA_001\",\n      \"beneficiaryBankBic\": \"BOFAUS3N\",\n      \"beneficiaryAccountNumber\": \"****6789\",\n      \"beneficiaryAccountName\": \"John Doe\",\n      \"correspondentBankBic\": \"\",\n      \"beneficiaryAddress\": \"\",\n      \"beneficiaryBankName\": \"Bank of America\",\n      \"beneficiaryBankAddress\": \"\",\n      \"beneficiaryCountry\": \"US\"\n    },\n    \"lockedRateSnapshot\": \"{\\\"USDC\\\":1.0}\",\n    \"createdAt\": \"2025-01-01T10:00:00\"\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel (取消提现)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"withdrawOrderId\": \"FW5036758425322526209\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/fiat-withdraw/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "fiat-withdraw",
+                "cancel"
+              ]
+            },
+            "description": "取消法币提现订单（天然幂等）。仅 PENDING 状态可取消。\n\n**必填字段:**\n- `withdrawOrderId` (string, max 64) — 提现单号\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"withdrawOrderId\": \"FW001\",\n    \"status\": \"CANCELLED\"\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "List (提现列表)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"\",\n  \"startTime\": \"2026-05-01T00:00:00\",\n  \"endTime\": \"2026-05-31T23:59:59\",\n  \"pageNo\": 1,\n  \"pageSize\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/fiat-withdraw/list",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "fiat-withdraw",
+                "list"
+              ]
+            },
+            "description": "查询法币提现订单列表（分页）。\n\n**可选字段:**\n- `status` (string) — 状态过滤 (PENDING / PROCESSING / SETTLING / COMPLETED / CANCELLED / REJECTED / FAILED)\n- `startTime` (string) — 开始时间 (ISO 8601)\n- `endTime` (string) — 结束时间 (ISO 8601)\n- `pageNo` (int, >=1, default 1) — 页码\n- `pageSize` (int, 1-100, default 20) — 每页条数\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"pageInfo\": {\n      \"currentPage\": 1,\n      \"pageSize\": 20,\n      \"totalPages\": 1,\n      \"totalCount\": 2,\n      \"hasNext\": false,\n      \"hasPrevious\": false\n    },\n    \"list\": [\n      {\n        \"withdrawOrderId\": \"FW001\",\n        \"status\": \"COMPLETED\",\n        \"quoteMode\": \"ARRIVAL\",\n        \"feeAmountFiat\": \"5.00\",\n        \"chargeAmountFiat\": \"1005.00\",\n        \"deductionSnapshot\": {\n          \"deductionPlan\": [\n            {\n              \"assetCode\": \"USDC\",\n              \"deductAmount\": \"1005.00\",\n              \"principalAmount\": \"1000.00\",\n              \"feeAmount\": \"5.00\",\n              \"sequence\": 1\n            }\n          ]\n        },\n        \"withdrawAmount\": \"1005.00\",\n        \"withdrawCurrency\": \"USDC\",\n        \"arrivalAmount\": \"1000.00\",\n        \"arrivalCurrency\": \"USD\",\n        \"createdAt\": \"2025-01-01T10:00:00\"\n      }\n    ]\n  }\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Detail (提现详情)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// 引入 CryptoJS 库",
+                  "const CryptoJS = require('crypto-js');",
+                  "",
+                  "// // HMAC-SHA256 加密并输出为 Base64",
+                  "// const message = \"Hello, World!\";",
+                  "// const secretKey = \"MySecretKey\"; // 密钥",
+                  "// const hash = CryptoJS.HmacSHA256(message, secretKey); // 使用 HMAC-SHA256 算法加密",
+                  "// const base64Encoded = CryptoJS.enc.Base64.stringify(hash); // 转换为 Base64 编码",
+                  "// console.log(\"HMAC-SHA256: \" + base64Encoded); // 输出结果",
+                  "",
+                  "function generateOrderId(randomLength = 4, includeLowercase = false) {",
+                  "    // 生成时间部分：YYYYMMDDHHmmss",
+                  "    const now = new Date();",
+                  "    const year = now.getFullYear();",
+                  "    const month = String(now.getMonth() + 1).padStart(2, '0');",
+                  "    const day = String(now.getDate()).padStart(2, '0');",
+                  "    const hours = String(now.getHours()).padStart(2, '0');",
+                  "    const minutes = String(now.getMinutes()).padStart(2, '0');",
+                  "    const seconds = String(now.getSeconds()).padStart(2, '0');",
+                  "    const timePart = `${year}${month}${day}${hours}${minutes}${seconds}`;",
+                  "    // 生成随机字母部分",
+                  "    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';",
+                  "    const lowercase = 'abcdefghijklmnopqrstuvwxyz';",
+                  "    let chars = uppercase;",
+                  "    if (includeLowercase) {",
+                  "        chars += lowercase;",
+                  "    }",
+                  "    let randomPart = '';",
+                  "    for (let i = 0; i < randomLength; i++) {",
+                  "        const randomIndex = Math.floor(Math.random() * chars.length);",
+                  "        randomPart += chars[randomIndex];",
+                  "    }    ",
+                  "    return 'DCS'+timePart + randomPart;",
+                  "}",
+                  "",
+                  "const jsonData = JSON.parse(pm.request.body.raw);",
+                  "jsonData.mchTxnId=generateOrderId()",
+                  "pm.request.body.update(JSON.stringify(jsonData, null, 2));",
+                  "const appId=''",
+                  "// const apiSecret=pm.globals.get('apiSecret')",
+                  "const apiSecret = ''",
+                  "const pathUrl=pm.request.url.getPath()",
+                  "// path=pathUrl",
+                  "path=pathUrl.replace('/crypto-payment','')",
+                  "const payLoad=pm.request.body.raw.replace(/\\r?\\n/g,\"\")",
+                  "const timestamp = Date.now();",
+                  "const tm=timestamp.toString()",
+                  "",
+                  "// 构建待签名的map",
+                  "contentMap={}",
+                  "contentMap[\"x-api-key\"] = appId;",
+                  "contentMap[\"x-api-timestamp\"] = tm;",
+                  "contentMap[\"apiPath\"] = path;",
+                  "contentMap[\"body\"] = payLoad;",
+                  "// 获取所有keys并排序",
+                  "const keys = Object.keys(contentMap).sort();",
+                  "// 创建有序对象",
+                  "const orderedMap = {};",
+                  "keys.forEach(key => {",
+                  "    orderedMap[key] = contentMap[key];",
+                  "});",
+                  "// JSON序列化",
+                  "const content = JSON.stringify(orderedMap);",
+                  "// console.log(content)",
+                  "const signature = CryptoJS.HmacSHA256(content, apiSecret).toString(CryptoJS.enc.Base64);",
+                  "",
+                  "",
+                  "// let hash;",
+                  "// try {",
+                  "//     // 确保参数有效",
+                  "//     if (!content || !apiSecret) {",
+                  "//         console.error('Content or apiSecret is undefined');",
+                  "//         console.log('Content:', content);",
+                  "//         console.log('apiSecret:', apiSecret);",
+                  "//         throw new Error('Missing required parameters');",
+                  "//     }",
+                  "    ",
+                  "//     // 分步执行HMAC操作",
+                  "//     hash = CryptoJS.HmacSHA256(content, apiSecret);",
+                  "    ",
+                  "//     // 检查hash对象是否有效",
+                  "//     if (!hash) {",
+                  "//         throw new Error('Hash generation failed');",
+                  "//     }",
+                  "    ",
+                  "//     const signature = hash.toString(CryptoJS.enc.Base64);",
+                  "    ",
+                  "//     // 使用生成的签名...",
+                  "// } catch (err) {",
+                  "//     console.error('Signature generation error:', err);",
+                  "// }",
+                  "",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-key',",
+                  "    value: appId",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-timestamp',",
+                  "    value: tm",
+                  "});",
+                  "",
+                  "pm.request.headers.upsert({",
+                  "    key: 'x-api-signature',",
+                  "    value: signature",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "appId",
+                "value": "{{appId}}"
+              },
+              {
+                "key": "timestamp",
+                "value": "{{}}"
+              },
+              {
+                "key": "sign",
+                "value": "{{sign}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"withdrawOrderId\": \"FW5036781554694493696\",\n  \"mchOrderId\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout/v1/fiat-withdraw/detail",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout",
+                "v1",
+                "fiat-withdraw",
+                "detail"
+              ]
+            },
+            "description": "查询法币提现订单详情（withdrawOrderId 和 mchOrderId 二选一）。\n\n**字段 (withdrawOrderId / mchOrderId 二选一):**\n- `withdrawOrderId` (string, max 64) — 提现单号\n- `mchOrderId` (string, max 128) — 商户订单号\n\n**Response:**\n```json\n{\n  \"code\": \"200\",\n  \"data\": {\n    \"withdrawOrderId\": \"FW001\",\n    \"status\": \"COMPLETED\",\n    \"quoteMode\": \"ARRIVAL\",\n    \"feeAmountFiat\": \"5.00\",\n    \"chargeAmountFiat\": \"1005.00\",\n    \"deductionSnapshot\": {\n      \"deductionPlan\": [\n        {\n          \"assetCode\": \"USDC\",\n          \"deductAmount\": \"1005.00\",\n          \"principalAmount\": \"1000.00\",\n          \"feeAmount\": \"5.00\",\n          \"sequence\": 1\n        }\n      ]\n    },\n    \"withdrawAmount\": \"1005.00\",\n    \"withdrawCurrency\": \"USDC\",\n    \"feeAmount\": \"5.00\",\n    \"deductionAmount\": \"1005.00\",\n    \"arrivalAmount\": \"1000.00\",\n    \"arrivalCurrency\": \"USD\",\n    \"exchangeRate\": \"1.000000\",\n    \"bankAccountInfo\": {\n      \"bankAccountId\": \"BA_001\",\n      \"beneficiaryBankBic\": \"BOFAUS3N\",\n      \"beneficiaryAccountNumber\": \"****6789\",\n      \"beneficiaryAccountName\": \"John Doe\",\n      \"correspondentBankBic\": \"\",\n      \"beneficiaryAddress\": \"\",\n      \"beneficiaryBankName\": \"Bank of America\",\n      \"beneficiaryBankAddress\": \"\",\n      \"beneficiaryCountry\": \"US\"\n    },\n    \"quoteId\": \"QT_xxx\",\n    \"quoteExpireAt\": \"2025-01-01T12:05:00\",\n    \"rejectionReason\": null,\n    \"createdAt\": \"2025-01-01T10:00:00\",\n    \"completedAt\": \"2025-01-01T10:30:00\"\n  }\n}\n```\n\n**status 值:** PENDING, PROCESSING, SETTLING, COMPLETED, CANCELLED, REJECTED, FAILED"
+          },
+          "response": []
+        }
+      ],
+      "description": "Fiat Withdraw OpenAPI - 法币提现接口 (幂等键: mchOrderId)"
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8079/crypto-payment",
+      "type": "string"
+    },
+    {
+      "key": "appId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "clientId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "sign",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
