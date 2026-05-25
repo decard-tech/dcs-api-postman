@@ -1228,6 +1228,84 @@
         }
       ],
       "id": "e124e4e2-8a27-4465-86a6-b824983fb968"
+    },
+    {
+      "name": "kyc",
+      "item": [
+        {
+          "name": "detail",
+          "id": "73d3699e-257b-4249-b2eb-96178f1ac486",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/kyc/v1/detail?customerId=5062272748622452737",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "kyc",
+                "v1",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "customerId",
+                  "value": "5062272748622452737"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "eaf40af8-cb6b-46d6-bef4-c0f58054b570"
+    },
+    {
+      "name": "simulation",
+      "item": [
+        {
+          "name": "fund-auth",
+          "id": "5616eefb-3d85-4f2e-b294-ecae2b11aa3a",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardId\": \"4934950835815641344\",\n    \"authType\": \"EXPEND\",\n    \"amount\": \"15.5\",\n    \"currency\": \"USD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/simulation/v1/fund-auth",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "simulation",
+                "v1",
+                "fund-auth"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a0995d9b-aff9-4993-9f12-41a2cc7467f1"
     }
   ],
   "event": [
@@ -1258,7 +1336,7 @@
           "",
           "// Get the request URL and query parameters (if GET request)",
           "const queryParams = pm.request.url.query ? pm.request.url.query.toString() : '';",
-          "const requestBody = pm.request.body ? pm.request.body.raw : '';",
+          "const requestBody = (pm.request.body && pm.request.body.raw) ? pm.request.body.raw : '';",
           "const nonce = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;",
           "",
           "// Combine request URL, query parameters, request body (for POST), and current timestamp",

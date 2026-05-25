@@ -1,5 +1,10 @@
 ## Change Logs
 
+# 20260525
+__KYC__
+
+- GET /kyc/v1/detail
+
 # 20260319
 __Redirect__
 

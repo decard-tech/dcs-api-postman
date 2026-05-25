@@ -1,5 +1,14 @@
 ## Change Logs
 
+# 20260525
+__KYC__
+
+- GET /open-api/kyc/v1/detail
+
+__Simulation__
+
+- POST /open-api/simulation/v1/fund-auth
+
 # 20260119
 __Normal CardApplyMode__
 
