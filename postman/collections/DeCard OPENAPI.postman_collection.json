@@ -634,7 +634,7 @@
                 "generate-file-upload-prepare"
               ]
             },
-            "description": "Generated from cURL: curl --location 'api.uatdcd.com/account/v1/generate-file-upload-prepare' \\\n--header 'X-DAPI-API-KEY: 25941630059C4B9EA000A7602203D341' \\\n--header 'X-DAPI-SIGN: ede53e5c9804fc6b7e21bd1aba2847ef201d40d4f4c9a925b7ccbcffd36d89c6' \\\n--header 'X-DAPI-TIMESTAMP: 1764754313790' \\\n--header 'X-DAPI-NONCE: 31544' \\\n--header 'x-gray-env: uxlink' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"fileNames\": [\"SOF_CRYPTO.pdf\"]\n}'"
+            "description": "Generated from cURL: curl --location 'api.uatdcd.com/account/v1/generate-file-upload-prepare' \\\n--header 'X-DAPI-API-KEY: 25941630059C4B9EA000A7602203D341' \\\n--header 'X-DAPI-SIGN: ede53e5c9804fc6b7e21bd1aba2847ef201d40d4f4c9a925b7ccbcffd36d89c6' \\\n--header 'X-DAPI-TIMESTAMP: 1764754313790' \\\n--header 'X-DAPI-NONCE: 31544' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"fileNames\": [\"SOF_CRYPTO.pdf\"]\n}'"
           },
           "response": []
         },
@@ -689,7 +689,7 @@
                 "upload-edd-file"
               ]
             },
-            "description": "Generated from cURL: curl --location 'http://anydmp-gateway-internal.dcsuat.com/account/v1/upload-edd-file' \\\n--header 'X-DAPI-API-KEY: 75D80777564245208326451043BFA12E' \\\n--header 'X-DAPI-SIGN: 9e25943e100555fa16b6f3bf32bb86e7354c7b53398f5d00cd0d41162ee7fd4e' \\\n--header 'X-DAPI-TIMESTAMP: 1759218057131' \\\n--header 'X-DAPI-NONCE: 24566' \\\n--header 'x-gray-env: uxlink' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"externalUserId\": \"b033b007-9c04-41f2-9cab-a6a51d4164cc\",\n  \"requestRef\": \"1759218057131\",\n  \"applyId\": \"4637812972772726273\",\n   \"eddSowSalary\": {\n    \"employerName\": \"employerName000888\",\n    \"jobTitle\": \"jobTitle6767\",\n    \"annualIncome\": \"annualIncome666\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowBizRevenue\": {\n    \"businessName\": \"Binance666\",\n    \"natureOfBusiness\": \"ALL666\",\n    \"annualRevenue\":\"28000111.89\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowGift\": {\n    \"contributorName\": \"Property666\",\n    \"relationshipToYou\": \"friend666\",\n    \"contributorSourceOfWealth\":\"工资666\",\n    \"estimatedNetWorth\":\"100000666\",\n    \"typeOfAssets\":\"人民币111\",\n    \"yearAssetsReceived\":\"200000111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n   \"eddSowInheritance\": {\n    \"deceasedName\": \"Deceased.Name11\",\n    \"relationshipToYou\": \"friend11\",\n    \"yearInherited\": \"202011\",\n    \"approximateValue\": \"36000011\",\n    \"typeOfAssets\": \"现金111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_SAVING_PNG.png\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/f9dc845e-518f-4e42-9811-44d18c86f1f0.png\"\n      }\n    ]\n  },\n  \"eddSowInvest\": {\n    \"typeOfInvestment\": \"typeOfInvestment111\",\n    \"approximateValue\": \"8000000\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"2505.10636v1.pdf\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/0b1bfe08-f8cf-44a6-84eb-339679f9d183.pdf\"\n      }\n    ]\n  }\n\n}\n'"
+            "description": "Generated from cURL: curl --location 'http://anydmp-gateway-internal.dcsuat.com/account/v1/upload-edd-file' \\\n--header 'X-DAPI-API-KEY: 75D80777564245208326451043BFA12E' \\\n--header 'X-DAPI-SIGN: 9e25943e100555fa16b6f3bf32bb86e7354c7b53398f5d00cd0d41162ee7fd4e' \\\n--header 'X-DAPI-TIMESTAMP: 1759218057131' \\\n--header 'X-DAPI-NONCE: 24566' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"externalUserId\": \"b033b007-9c04-41f2-9cab-a6a51d4164cc\",\n  \"requestRef\": \"1759218057131\",\n  \"applyId\": \"4637812972772726273\",\n   \"eddSowSalary\": {\n    \"employerName\": \"employerName000888\",\n    \"jobTitle\": \"jobTitle6767\",\n    \"annualIncome\": \"annualIncome666\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowBizRevenue\": {\n    \"businessName\": \"Binance666\",\n    \"natureOfBusiness\": \"ALL666\",\n    \"annualRevenue\":\"28000111.89\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n  \"eddSowGift\": {\n    \"contributorName\": \"Property666\",\n    \"relationshipToYou\": \"friend666\",\n    \"contributorSourceOfWealth\":\"工资666\",\n    \"estimatedNetWorth\":\"100000666\",\n    \"typeOfAssets\":\"人民币111\",\n    \"yearAssetsReceived\":\"200000111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_BIZ_REVENUE_JPEG.jpeg\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/c7874b02-e614-4322-972a-67eb87889738.jpeg\"\n      }\n    ]\n  },\n   \"eddSowInheritance\": {\n    \"deceasedName\": \"Deceased.Name11\",\n    \"relationshipToYou\": \"friend11\",\n    \"yearInherited\": \"202011\",\n    \"approximateValue\": \"36000011\",\n    \"typeOfAssets\": \"现金111\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"SOF_SAVING_PNG.png\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/f9dc845e-518f-4e42-9811-44d18c86f1f0.png\"\n      }\n    ]\n  },\n  \"eddSowInvest\": {\n    \"typeOfInvestment\": \"typeOfInvestment111\",\n    \"approximateValue\": \"8000000\",\n    \"docUrls\": [\n      {\n        \"fileName\": \"2505.10636v1.pdf\",\n        \"filePath\": \"risk-center/edd/4485342090222237441/20250529/20250529/0b1bfe08-f8cf-44a6-84eb-339679f9d183.pdf\"\n      }\n    ]\n  }\n\n}\n'"
           },
           "response": []
         },
@@ -2689,6 +2689,36 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "kyc",
+      "item": [
+        {
+          "name": "detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/kyc/v1/detail?externalUserId=222fdca8-3ba2-4e8e-8c3a-7702ef7807ef",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "kyc",
+                "v1",
+                "detail"
+              ],
+              "query": [
+                {
+                  "key": "externalUserId",
+                  "value": "222fdca8-3ba2-4e8e-8c3a-7702ef7807ef"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "event": [
@@ -2790,7 +2820,6 @@
           "// console.log(\"签名数据\",apiKey + timestamp + nonce + rawBody);",
           "const signature = signatureGenerator.getSignature(apiKey + timestamp + nonce + rawBody);",
           "pm.globals.set('SIGNATURE', signature);",
-          "// pm.request.headers.add({key: 'x-gray-env', value: 'openapi'});",
           "pm.request.headers.upsert({",
           "    key: 'X-DAPI-API-KEY',",
           "    value: apiKey",
