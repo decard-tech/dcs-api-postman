@@ -1,5 +1,18 @@
 ## Change Logs
 
+# 20260602
+__OTP__
+
+- POST /open-api/customer/v1/send-otp
+
+__KYC__
+
+- POST /open-api/kyc-ticket/v1/apply-kyc-h5
+
+__Redirect__
+
+- POST /open-api/card-redirect/v1/guidance-link （新增 type=7 申请 KYC-H5，新增 profileId 字段）
+
 # 20260525
 __KYC__
 

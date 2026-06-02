@@ -1063,6 +1063,36 @@
           "response": []
         },
         {
+          "name": "send-otp",
+          "id": "a1f2c3d4-5b6e-47a8-9c01-2d3e4f5a6b7c",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"otpSendRef\": \"sms-test1780391422081943935\",\n    \"channel\": \"EMAIL\",\n    \"email\": \"12345678@qq.com\",\n    \"otp\": \"444555\",\n    \"language\": \"en\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/customer/v1/send-otp",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "customer",
+                "v1",
+                "send-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "customer-detail",
           "id": "d5a5f9c3-bbfd-453b-bf15-608f87d475b0",
           "request": {
@@ -1175,6 +1205,66 @@
             "body": {
               "mode": "raw",
               "raw": "{\n    \"customerId\": \"4879846599637290752\",\n    \"kycTicketId\": \"4879840591766572801\",\n    \"type\": \"4\",\n    \"otpStatus\": \"1\",\n    \"language\": \"zh\",\n    \"theme\": \"default\",\n    \"mode\": \"light\",\n    \"userAgent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\",\n    \"successfulRedirectUrl\": \"http://www.baidu.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/card-redirect/v1/guidance-link",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "card-redirect",
+                "v1",
+                "guidance-link"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "apply-kyc-h5",
+          "id": "c4d5e6f7-8a9b-40c1-b2d3-4e5f6a7b8c9d",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"kycTicketRef\": \"487444861530117683\",\n    \"customerId\": \"4879846599637290752\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{open-api-host}}/open-api/kyc-ticket/v1/apply-kyc-h5",
+              "host": [
+                "{{open-api-host}}"
+              ],
+              "path": [
+                "open-api",
+                "kyc-ticket",
+                "v1",
+                "apply-kyc-h5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "apply kyc h5 guidance link",
+          "id": "b3d8f1a2-7c4e-4f9a-9d21-5e6a8c0f1b34",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customerId\": \"4879846599637290752\",\n    \"kycTicketId\": \"4879840591766572801\",\n    \"type\": \"7\",\n    \"otpStatus\": \"1\",\n    \"language\": \"zh\",\n    \"theme\": \"default\",\n    \"mode\": \"dark\",\n    \"profileId\": \"4874478085033224960\",\n    \"userAgent\": \"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 DeCard/1.0.0 (iOS 1.20.0)\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
