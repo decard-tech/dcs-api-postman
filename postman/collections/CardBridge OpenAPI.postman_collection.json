@@ -88,7 +88,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"cardOrderRef\": \"202506201556\",\n    \"replaceCardId\": \"4578334137853731841\",\n    \"virtualToPhysicalInfo\": {\n        \"postalCode\": \"542317\",\n        \"address\": \"307B Anchirvale road\",\n        \"address2\": \"#01-200\",\n        \"address3\": \"Anchirvale Place\",\n        \"address4\": \"Anchirvale Place\",\n        \"address5\": \"Anchirvale Place\",\n        \"countryCode\": \"SG\",\n        \"city\": \"Singapore City\",\n        \"province\": \"Singapore City\",\n        \"embossingName\": \"lee\",\n        \"cardLayoutCode\": \"MGEBP\",\n        \"needShippingInfo\": true\n    }\n}",
+              "raw": "{\n    \"cardOrderRef\": \"202506201556\",\n    \"replaceCardId\": \"4578334137853731841\",\n    \"virtualToPhysicalInfo\": {\n        \"postalCode\": \"542317\",\n        \"address\": \"307B Anchirvale road\",\n        \"address2\": \"#01-200\",\n        \"address3\": \"Anchirvale Place\",\n        \"address4\": \"Anchirvale Place\",\n        \"address5\": \"Anchirvale Place\",\n        \"countryCode\": \"SG\",\n        \"city\": \"Singapore City\",\n        \"province\": \"Singapore City\",\n        \"embossingName\": \"lee\",\n        \"cardLayoutCode\": \"MGEBP\",\n        \"needShippingInfo\": true,\n        \"mailMobileCode\": \"SG\",\n        \"mailMobile\": \"91159519\"\n    }\n}",
               "options": {
                 "raw": {
                   "language": "json"

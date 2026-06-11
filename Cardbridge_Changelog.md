@@ -1,5 +1,10 @@
 ## Change Logs
 
+# 20260611
+__card order__
+
+- POST /open-api/card-order/v1/virtual-to-physical （新增 mailMobileCode、mailMobile 字段，邮寄手机号国家码及手机号，均可选）
+
 # 20260602
 __OTP__
 
